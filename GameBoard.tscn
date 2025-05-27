@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=4 uid="uid://cu8p01l4jvkgv"]
+[gd_scene load_steps=6 format=4 uid="uid://cu8p01l4jvkgv"]
 
 [ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://tiles/white_tile.png" id="1_ocn0r"]
 [ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://tiles/black_tile.png" id="2_3fmbn"]
-[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://logic_panel.gd" id="3_yyygo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trxdi"]
 texture = ExtResource("1_ocn0r")
@@ -1967,7 +1966,7 @@ texture = ExtResource("2_3fmbn")
 sources/1 = SubResource("TileSetAtlasSource_6xh2g")
 sources/0 = SubResource("TileSetAtlasSource_trxdi")
 
-[node name="Game Board" type="Node2D"]
+[node name="GameBoard" type="Node2D"]
 
 [node name="ChessTileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_atwlb")
@@ -1980,41 +1979,3 @@ tile_set = SubResource("TileSet_atwlb")
 
 [node name="CamTopCenterBoard" type="Camera2D" parent="."]
 zoom = Vector2(4.5, 4.5)
-
-[node name="UI" type="CanvasLayer" parent="."]
-
-[node name="LogicPanel" type="Panel" parent="UI"]
-visible = false
-offset_left = -50.0
-offset_top = -45.0
-offset_right = 50.0
-offset_bottom = 55.0
-rotation = 0.00182382
-script = ExtResource("3_yyygo")
-
-[node name="Button" type="Button" parent="UI/LogicPanel"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-rotation = 0.0248209
-scale = Vector2(0.2, 0.2)
-text = "Apply"
-
-[node name="ColorRect" type="ColorRect" parent="UI/LogicPanel"]
-offset_left = -4.9692
-offset_top = -20.0077
-offset_right = 107.031
-offset_bottom = -0.00767899
-rotation = -0.00714684
-color = Color(0, 0, 0, 0.784314)
-
-[node name="Label" type="Label" parent="UI/LogicPanel"]
-offset_left = -5.03647
-offset_top = -19.9908
-offset_right = 143.964
-offset_bottom = 3.00915
-rotation = -0.00444009
-scale = Vector2(0.75, 0.75)
-text = "Movement Options"
-
-[connection signal="pressed" from="UI/LogicPanel/Button" to="UI/LogicPanel" method="_on_button_pressed"]
