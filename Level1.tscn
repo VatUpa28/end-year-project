@@ -1995,6 +1995,7 @@ rotation = 0.00182382
 script = ExtResource("3_dn5ey")
 
 [node name="Apply Button" type="Button" parent="UI/LogicPanel"]
+layout_mode = 0
 offset_right = 52.0
 offset_bottom = 31.0
 rotation = 0.0248209
@@ -2002,6 +2003,7 @@ scale = Vector2(0.2, 0.2)
 text = "Apply"
 
 [node name="ColorRect" type="ColorRect" parent="UI/LogicPanel"]
+layout_mode = 0
 offset_left = -4.9692
 offset_top = -20.0077
 offset_right = 107.031
@@ -2010,6 +2012,7 @@ rotation = -0.00714684
 color = Color(0, 0, 0, 0.784314)
 
 [node name="Label" type="Label" parent="UI/LogicPanel"]
+layout_mode = 0
 offset_left = -5.03647
 offset_top = -19.9908
 offset_right = 143.964

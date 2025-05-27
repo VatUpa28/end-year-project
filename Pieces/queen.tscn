@@ -1,20 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://beugodnbpiwn2"]
+[gd_scene load_steps=4 format=3 uid="uid://co5dsjlne3lm6"]
 
-[ext_resource type="Texture2D" uid="uid://c86qvo8fhndmj" path="res://tiles/water-jug-on-transparent-background-free-png.webp" id="1_3makh"]
-[ext_resource type="Script" uid="uid://ca2rd7lrvlody" path="res://Pieces/piece.gd" id="1_hisf2"]
+[ext_resource type="Script" uid="uid://ca2rd7lrvlody" path="res://Pieces/piece.gd" id="1_gtk5s"]
+[ext_resource type="Texture2D" uid="uid://c86qvo8fhndmj" path="res://tiles/water-jug-on-transparent-background-free-png.webp" id="2_ktqye"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hisf2"]
 size = Vector2(16, 16)
 
 [node name="Piece" type="Area2D"]
 rotation = 0.00064791
-script = ExtResource("1_hisf2")
+script = ExtResource("1_gtk5s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1.43051e-06, 0)
 rotation = 0.00191633
 scale = Vector2(0.02, 0.02)
-texture = ExtResource("1_3makh")
+texture = ExtResource("2_ktqye")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hisf2")
