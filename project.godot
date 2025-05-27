@@ -11,5 +11,5 @@ config_version=5
 [application]
 
 config/name="End Year Project"
-run/main_scene="uid://cu8p01l4jvkgv"
+run/main_scene="uid://bynvvlradf21x"
 config/features=PackedStringArray("4.4", "Mobile")
