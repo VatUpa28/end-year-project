@@ -9,6 +9,8 @@ extends Area2D
 
 var selected = false
 
+@onready var logic_panel = get_node("UI/LogicPanel")
+
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		selected = !selected
@@ -16,3 +18,8 @@ func _on_input_event(viewport, event, shape_idx):
 		print("Piece clicked!")
 		print("Selected: ", selected)
 		print("Allowed Directions: ", allowed_dirs)
+
+		if selected:
+			logic_panel.show_for(self)
+		else:
+			logic_panel.visible = false

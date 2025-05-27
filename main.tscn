@@ -1967,7 +1967,7 @@ texture = ExtResource("2_3fmbn")
 sources/1 = SubResource("TileSetAtlasSource_6xh2g")
 sources/0 = SubResource("TileSetAtlasSource_trxdi")
 
-[node name="Game Board" type="Node2D"]
+[node name="Main" type="Node2D"]
 
 [node name="ChessTileMap" type="TileMap" parent="."]
 position = Vector2(117, 0)
