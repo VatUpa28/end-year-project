@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=4 uid="uid://cu8p01l4jvkgv"]
+[gd_scene load_steps=8 format=4 uid="uid://ds27kc644i0ci"]
 
-[ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://Tiles/white_tile.png" id="1_ocn0r"]
-[ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://Tiles/black_tile.png" id="2_3fmbn"]
-[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://logic_panel.gd" id="3_yyygo"]
+[ext_resource type="Script" uid="uid://dmdnst8vmjasx" path="res://Levels/level_2.gd" id="1_506po"]
+[ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://Tiles/white_tile.png" id="2_v115i"]
+[ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://Tiles/black_tile.png" id="3_jglcl"]
+[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://logic_panel.gd" id="4_w0h0a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trxdi"]
-texture = ExtResource("1_ocn0r")
+texture = ExtResource("2_v115i")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -969,7 +970,7 @@ texture = ExtResource("1_ocn0r")
 30:30/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6xh2g"]
-texture = ExtResource("2_3fmbn")
+texture = ExtResource("3_jglcl")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1967,16 +1968,16 @@ texture = ExtResource("2_3fmbn")
 sources/1 = SubResource("TileSetAtlasSource_6xh2g")
 sources/0 = SubResource("TileSetAtlasSource_trxdi")
 
-[node name="Main" type="Node2D"]
+[node name="Level2" type="Node2D"]
+script = ExtResource("1_506po")
 
 [node name="ChessTileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_atwlb")
 format = 2
-layer_0/tile_data = PackedInt32Array(196606, 458752, 11, 65534, 458752, 11, -65538, 458752, 11, -196610, 458752, 11, -131073, 458752, 11, -1, 458752, 11, 0, 458752, 11, -131072, 458752, 11, -262144, 458752, 11, -196607, 458752, 11, -131070, 458752, 11, -65535, 458752, 11, -196605, 458752, 11, -262142, 458752, 11, 262142, 458753, 9, 131070, 458753, 9, 65535, 458753, 9, -2, 458753, 9, -65537, 458753, 9, -131074, 458753, 9, -196609, 458753, 9, -262143, 458753, 9, -196608, 458753, 9, -131071, 458753, 9, -196606, 458753, 9, -262141, 458753, 9, -131069, 458753, 9, -65534, 458753, 9, -65536, 458753, 9)
 
 [node name="Layer1" type="TileMapLayer" parent="ChessTileMap"]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAD8////AQASABEAAAD8//3/AQASABEAAAD8/wMAAQAQABMAAAD8/wEAAQAQABMAAAD//wEAAAAQAA8AAAD//wIAAQASABEAAAD//wMAAAAQAA8AAAAAAAMAAQASABEAAAABAAMAAAAQAA8AAAACAAMAAQASABEAAAACAAIAAAAQAA8AAAADAAIAAQASABEAAAADAAMAAAAQAA8AAAADAAEAAAAQAA8AAAACAAAAAAAFABEAAAABAAEAAAAQAA8AAAABAAIAAQASABEAAAADAAAAAQASABEAAAADAP//AAAFABEAAAACAAEAAQASABEAAAABAAAAAQASABEAAAAAAAEAAQAJABIAAAAAAAIAAAAQAA8AAAD9/wMAAAAQAA8AAAD9/wIAAQAQABMAAAD9/wEAAAAQAA8AAAD9/wAAAQAQABMAAAD9////AAAQAA8AAAD9//7/AQASABEAAAD9//3/AAAQAA8AAAD9//z/AQASABEAAAD8//z/AAAQAA8AAAD8//7/AAAQAA8AAAD8/wAAAAAQAA8AAAD8/wIAAAAQAA8AAAA=")
+tile_map_data = PackedByteArray("AAAAAP//AQAOABAAAAD//wAAAQAJABIAAAAAAP7/AAAFABEAAAAAAPz/AAAFABEAAAD///3/AAAFABEAAAACAPz/AAAFABEAAAADAP3/AAAFABEAAAABAP3/AAAFABEAAAACAP7/AAAFABEAAAACAAAAAAAFABEAAAABAP//AAAFABEAAAADAP//AAAFABEAAAD+/wAAAAAFABEAAAAAAAMAAQASABEAAAABAAAAAQASABEAAAACAP//AQASABEAAAADAP7/AQASABEAAAACAP3/AQASABEAAAABAPz/AQASABEAAAABAP7/AQASABEAAAAAAP3/AQASABEAAAADAPz/AQASABEAAAADAAAAAQASABEAAAD///z/AQASABEAAAD//wIAAQASABEAAAACAAEAAQASABEAAAACAAMAAQASABEAAAADAAIAAQASABEAAAD+/wEAAQASABEAAAD+/wMAAQASABEAAAD+////AQASABEAAAD8////AQASABEAAAD9//7/AQASABEAAAD+//3/AQASABEAAAD8//3/AQASABEAAAD9//z/AQASABEAAAD+//z/AAAQAA8AAAD9//3/AAAQAA8AAAD8//z/AAAQAA8AAAD8//7/AAAQAA8AAAD9////AAAQAA8AAAD+//7/AAAQAA8AAAD8/wAAAAAQAA8AAAD//wEAAAAQAA8AAAABAAEAAAAQAA8AAAADAAEAAAAQAA8AAAADAAMAAAAQAA8AAAACAAIAAAAQAA8AAAABAAMAAAAQAA8AAAAAAAIAAAAQAA8AAAD//wMAAAAQAA8AAAD+/wIAAAAQAA8AAAD9/wMAAAAQAA8AAAD9/wEAAAAQAA8AAAD8/wIAAAAQAA8AAAD9/wIAAQAQABMAAAD8/wMAAQAQABMAAAD8/wEAAQAQABMAAAD9/wAAAQAQABMAAAABAAIAAQASABEAAAAAAAEAAQAJABIAAAAAAAAAAAAPAA4AAAD/////AAAFABEAAAD///7/AQASABEAAAA=")
 tile_set = SubResource("TileSet_atwlb")
 
 [node name="CamTopCenterBoard" type="Camera2D" parent="."]
@@ -1991,12 +1992,12 @@ offset_top = -45.0
 offset_right = 50.0
 offset_bottom = 55.0
 rotation = 0.00182382
-script = ExtResource("3_yyygo")
+script = ExtResource("4_w0h0a")
 
-[node name="Button" type="Button" parent="UI/LogicPanel"]
+[node name="Apply Button" type="Button" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+offset_right = 52.0
+offset_bottom = 31.0
 rotation = 0.0248209
 scale = Vector2(0.2, 0.2)
 text = "Apply"
@@ -2015,9 +2016,16 @@ layout_mode = 0
 offset_left = -5.03647
 offset_top = -19.9908
 offset_right = 143.964
-offset_bottom = 3.00915
+offset_bottom = 3.0092
 rotation = -0.00444009
 scale = Vector2(0.75, 0.75)
 text = "Movement Options"
 
-[connection signal="pressed" from="UI/LogicPanel/Button" to="UI/LogicPanel" method="_on_button_pressed"]
+[node name="Rest Button" type="Button" parent="UI"]
+visible = false
+offset_right = 52.0
+offset_bottom = 31.0
+scale = Vector2(0.2, 0.2)
+text = "Reset"
+
+[connection signal="pressed" from="UI/LogicPanel/Apply Button" to="UI/LogicPanel" method="_on_button_pressed"]

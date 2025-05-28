@@ -1,7 +1,9 @@
 [gd_scene load_steps=4 format=3 uid="uid://beugodnbpiwn2"]
 
-[ext_resource type="Texture2D" uid="uid://c86qvo8fhndmj" path="res://tiles/water-jug-on-transparent-background-free-png.webp" id="1_3makh"]
 [ext_resource type="Script" uid="uid://ca2rd7lrvlody" path="res://Pieces/piece.gd" id="1_hisf2"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3makh"]
+load_path = "res://.godot/imported/water-jug-on-transparent-background-free-png.webp-e90994d18a5a89a959b0432f7387c2e1.ctex"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hisf2"]
 size = Vector2(16, 16)
@@ -14,7 +16,7 @@ script = ExtResource("1_hisf2")
 position = Vector2(1.43051e-06, 0)
 rotation = 0.00191633
 scale = Vector2(0.02, 0.02)
-texture = ExtResource("1_3makh")
+texture = SubResource("CompressedTexture2D_3makh")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hisf2")

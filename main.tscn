@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=4 uid="uid://cu8p01l4jvkgv"]
 
-[ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://tiles/white_tile.png" id="1_ocn0r"]
-[ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://tiles/black_tile.png" id="2_3fmbn"]
+[ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://Tiles/white_tile.png" id="1_ocn0r"]
+[ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://Tiles/black_tile.png" id="2_3fmbn"]
 [ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://logic_panel.gd" id="3_yyygo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trxdi"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=4 uid="uid://d3wrathcx07lj"]
 
-[ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://tiles/white_tile.png" id="1_cove1"]
-[ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://level_1.gd" id="1_dwyiq"]
-[ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://tiles/black_tile.png" id="2_dwyiq"]
+[ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://Tiles/white_tile.png" id="1_cove1"]
+[ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://Levels/level_1.gd" id="1_dwyiq"]
+[ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://Tiles/black_tile.png" id="2_dwyiq"]
 [ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://logic_panel.gd" id="3_dn5ey"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trxdi"]
@@ -2022,6 +2022,7 @@ scale = Vector2(0.75, 0.75)
 text = "Movement Options"
 
 [node name="Rest Button" type="Button" parent="UI"]
+visible = false
 offset_right = 52.0
 offset_bottom = 31.0
 scale = Vector2(0.2, 0.2)

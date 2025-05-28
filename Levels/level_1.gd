@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var piece_scene: PackedScene = preload("res://Piece.tscn")
+@onready var piece_scene: PackedScene = preload("res://Pieces/Piece.tscn")
 @onready var board := $Board
 @onready var logic_panel := $UI/LogicPanel
 
