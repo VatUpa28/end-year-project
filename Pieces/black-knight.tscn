@@ -1,20 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0vykx40vxcty"]
+[gd_scene load_steps=4 format=3 uid="uid://1ywocp1h5jst"]
 
-[ext_resource type="Script" uid="uid://ca2rd7lrvlody" path="res://Pieces/piece.gd" id="1_b1gl6"]
-[ext_resource type="Texture2D" uid="uid://c86qvo8fhndmj" path="res://tiles/water-jug-on-transparent-background-free-png.webp" id="2_jw2gf"]
+[ext_resource type="Script" uid="uid://dtyhxikvexsxt" path="res://Pieces/knight.gd" id="1_cwly6"]
+[ext_resource type="Texture2D" uid="uid://dfsdg21ne5or1" path="res://Pieces/blackHorse.jpg" id="2_cwly6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hisf2"]
 size = Vector2(16, 16)
 
-[node name="Piece" type="Area2D"]
+[node name="BlackKnight" type="Area2D"]
+position = Vector2(8, 8)
 rotation = 0.00064791
-script = ExtResource("1_b1gl6")
+script = ExtResource("1_cwly6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.43051e-06, 0)
+position = Vector2(0.032361, 0.0161545)
 rotation = 0.00191633
-scale = Vector2(0.02, 0.02)
-texture = ExtResource("2_jw2gf")
+scale = Vector2(0.192621, 0.144774)
+texture = ExtResource("2_cwly6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hisf2")

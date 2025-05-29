@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://Tiles/white_tile.png" id="1_cove1"]
 [ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://Levels/level_1.gd" id="1_dwyiq"]
 [ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://Tiles/black_tile.png" id="2_dwyiq"]
-[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/logic_panel.gd" id="3_dn5ey"]
+[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://logic_panel.gd" id="3_dn5ey"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trxdi"]
 texture = ExtResource("1_cove1")
@@ -1973,17 +1973,14 @@ script = ExtResource("1_dwyiq")
 
 [node name="Board" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_atwlb")
-rendering_quadrant_size = 8
 format = 2
 
 [node name="Layer1" type="TileMapLayer" parent="Board"]
 use_parent_material = true
-position = Vector2(64, 64)
 tile_map_data = PackedByteArray("AAAAAP//AQAOABAAAAD//wAAAQAJABIAAAAAAP7/AAAFABEAAAAAAPz/AAAFABEAAAD///3/AAAFABEAAAACAPz/AAAFABEAAAADAP3/AAAFABEAAAABAP3/AAAFABEAAAACAP7/AAAFABEAAAACAAAAAAAFABEAAAABAP//AAAFABEAAAADAP//AAAFABEAAAD+/wAAAAAFABEAAAAAAAMAAQASABEAAAABAAAAAQASABEAAAACAP//AQASABEAAAADAP7/AQASABEAAAACAP3/AQASABEAAAABAPz/AQASABEAAAABAP7/AQASABEAAAAAAP3/AQASABEAAAADAPz/AQASABEAAAADAAAAAQASABEAAAD///z/AQASABEAAAD//wIAAQASABEAAAACAAEAAQASABEAAAACAAMAAQASABEAAAADAAIAAQASABEAAAD+/wEAAQASABEAAAD+/wMAAQASABEAAAD+////AQASABEAAAD8////AQASABEAAAD9//7/AQASABEAAAD+//3/AQASABEAAAD8//3/AQASABEAAAD9//z/AQASABEAAAD+//z/AAAQAA8AAAD9//3/AAAQAA8AAAD8//z/AAAQAA8AAAD8//7/AAAQAA8AAAD9////AAAQAA8AAAD+//7/AAAQAA8AAAD8/wAAAAAQAA8AAAD//wEAAAAQAA8AAAABAAEAAAAQAA8AAAADAAEAAAAQAA8AAAADAAMAAAAQAA8AAAACAAIAAAAQAA8AAAABAAMAAAAQAA8AAAAAAAIAAAAQAA8AAAD//wMAAAAQAA8AAAD+/wIAAAAQAA8AAAD9/wMAAAAQAA8AAAD9/wEAAAAQAA8AAAD8/wIAAAAQAA8AAAD9/wIAAQAQABMAAAD8/wMAAQAQABMAAAD8/wEAAQAQABMAAAD9/wAAAQAQABMAAAABAAIAAQASABEAAAAAAAEAAQAJABIAAAAAAAAAAAAPAA4AAAD/////AAAFABEAAAD///7/AQASABEAAAA=")
 tile_set = SubResource("TileSet_atwlb")
 
 [node name="CamTopCenterBoard" type="Camera2D" parent="."]
-position = Vector2(64, 64)
 zoom = Vector2(4.5, 4.5)
 
 [node name="UI" type="CanvasLayer" parent="."]

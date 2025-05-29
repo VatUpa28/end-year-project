@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=4 uid="uid://ds27kc644i0ci"]
 
-[ext_resource type="Script" uid="uid://dmdnst8vmjasx" path="res://Levels/level_2.gd" id="1_506po"]
+[ext_resource type="Script" uid="uid://bjqssvqxxungo" path="res://Levels/level_2.gd" id="1_506po"]
 [ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://Tiles/white_tile.png" id="2_v115i"]
 [ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://Tiles/black_tile.png" id="3_jglcl"]
-[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://logic_panel.gd" id="4_w0h0a"]
+[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/logic_panel.gd" id="4_w0h0a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trxdi"]
 texture = ExtResource("2_v115i")

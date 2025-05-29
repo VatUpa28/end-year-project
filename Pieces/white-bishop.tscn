@@ -1,20 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://eyun1kqtleth"]
+[gd_scene load_steps=4 format=3 uid="uid://tibeait4aufh"]
 
-[ext_resource type="Script" uid="uid://ca2rd7lrvlody" path="res://Pieces/piece.gd" id="1_fqs5r"]
-[ext_resource type="Texture2D" uid="uid://c86qvo8fhndmj" path="res://tiles/water-jug-on-transparent-background-free-png.webp" id="2_jxsba"]
+[ext_resource type="Script" uid="uid://c6j1etp5niwn0" path="res://Pieces/bishop.gd" id="1_2u6w6"]
+[ext_resource type="Texture2D" uid="uid://dbee2ytfch0o5" path="res://Pieces/whiteBishop.jpg" id="2_2u6w6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hisf2"]
 size = Vector2(16, 16)
 
-[node name="Piece" type="Area2D"]
+[node name="WhiteBishop" type="Area2D"]
+position = Vector2(8, 8)
 rotation = 0.00064791
-script = ExtResource("1_fqs5r")
+script = ExtResource("1_2u6w6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.43051e-06, 0)
+position = Vector2(0.00746541, 0.000304222)
 rotation = 0.00191633
-scale = Vector2(0.02, 0.02)
-texture = ExtResource("2_jxsba")
+scale = Vector2(0.241778, 0.131372)
+texture = ExtResource("2_2u6w6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hisf2")

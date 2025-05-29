@@ -1,18 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://ptjal3a3de74"]
+[gd_scene load_steps=4 format=3 uid="uid://chsqcn6oh8ogb"]
 
-[ext_resource type="Script" uid="uid://ca2rd7lrvlody" path="res://Pieces/piece.gd" id="1_ycl4e"]
+[ext_resource type="Script" uid="uid://56wfolnw6iob" path="res://Pieces/king.gd" id="1_f0lbn"]
+[ext_resource type="Texture2D" uid="uid://dgo4mh2d6onbl" path="res://Pieces/blackKing.jpg" id="2_f0lbn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hisf2"]
 size = Vector2(16, 16)
 
-[node name="Piece" type="Area2D"]
+[node name="BlackKing" type="Area2D"]
+position = Vector2(8, 8)
 rotation = 0.00064791
-script = ExtResource("1_ycl4e")
+script = ExtResource("1_f0lbn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1.43051e-06, 0)
+position = Vector2(-0.011585, -0.0286773)
 rotation = 0.00191633
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.225887, 0.113417)
+texture = ExtResource("2_f0lbn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_hisf2")

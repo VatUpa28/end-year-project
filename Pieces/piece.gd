@@ -1,25 +1,24 @@
 extends Area2D
 
-@export var allowed_dirs = {
-	"up": true,
-	"down": true,
-	"left": true,
-	"right": true
+# Declare allowed directions dictionary
+var allowed_dirs: Dictionary = {
+	"up": false,
+	"down": false,
+	"left": false,
+	"right": false,
+	"up_left": false,
+	"up_right": false,
+	"down_left": false,
+	"down_right": false
 }
 
 var selected = false
-
-@onready var logic_panel = get_node("UI/LogicPanel")
+@onready var logic_panel = get_node_or_null("UI/LogicPanel")
 
 func _on_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		selected = !selected
-		print("-----")
-		print("Piece clicked!")
-		print("Selected: ", selected)
-		print("Allowed Directions: ", allowed_dirs)
-
-		if selected:
+		if selected and logic_panel:
 			logic_panel.show_for(self)
-		else:
+		elif logic_panel:
 			logic_panel.visible = false
