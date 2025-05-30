@@ -13,11 +13,7 @@ var current_piece = null
 @onready var apply_button = $ApplyButton
 
 func _ready():
-	print("Apply button:", apply_button)
-	if apply_button:
-		apply_button.pressed.connect(_on_ApplyButton_pressed)
-	else:
-		print("Error: Apply button not found!")
+	apply_button.pressed.connect(_on_ApplyButton_pressed)
 
 
 func update_with_piece(piece):
@@ -48,5 +44,4 @@ func _on_ApplyButton_pressed():
 		current_piece.set_highlight(false)
 		current_piece = null
 		
-		print("Apply clicked — hiding LogicPanel.")
 		visible = false

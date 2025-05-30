@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=4 uid="uid://ds27kc644i0ci"]
+[gd_scene load_steps=8 format=4 uid="uid://ddiyyuqnkdsr5"]
 
-[ext_resource type="Script" uid="uid://dmdnst8vmjasx" path="res://Levels/Level 2/level_2.gd" id="1_506po"]
-[ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://Tiles/white_tile.png" id="2_v115i"]
-[ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://Tiles/black_tile.png" id="3_jglcl"]
-[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 1/logic_panel.gd" id="4_w0h0a"]
+[ext_resource type="Script" uid="uid://hddk0213e151" path="res://Levels/Level 2/level_2.gd" id="1_aat58"]
+[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 2/logic_panel.gd" id="4_o4rnw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vl1nt"]
+load_path = "res://.godot/imported/white_tile.png-86eed4146de1e0c552a7ca6a0914a31e.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trxdi"]
-texture = ExtResource("2_v115i")
+texture = SubResource("CompressedTexture2D_vl1nt")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -969,8 +970,11 @@ texture = ExtResource("2_v115i")
 29:30/0 = 0
 30:30/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_owatk"]
+load_path = "res://.godot/imported/black_tile.png-3d46440024f12aec9fb1d58fac8a687c.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6xh2g"]
-texture = ExtResource("3_jglcl")
+texture = SubResource("CompressedTexture2D_owatk")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -1969,32 +1973,46 @@ sources/1 = SubResource("TileSetAtlasSource_6xh2g")
 sources/0 = SubResource("TileSetAtlasSource_trxdi")
 
 [node name="Level2" type="Node2D"]
-script = ExtResource("1_506po")
+script = ExtResource("1_aat58")
 
-[node name="ChessTileMap" type="TileMap" parent="."]
+[node name="Board" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_atwlb")
+rendering_quadrant_size = 8
 format = 2
 
-[node name="Layer1" type="TileMapLayer" parent="ChessTileMap"]
+[node name="Layer1" type="TileMapLayer" parent="Board"]
 use_parent_material = true
+position = Vector2(64, 64)
 tile_map_data = PackedByteArray("AAAAAP//AQAOABAAAAD//wAAAQAJABIAAAAAAP7/AAAFABEAAAAAAPz/AAAFABEAAAD///3/AAAFABEAAAACAPz/AAAFABEAAAADAP3/AAAFABEAAAABAP3/AAAFABEAAAACAP7/AAAFABEAAAACAAAAAAAFABEAAAABAP//AAAFABEAAAADAP//AAAFABEAAAD+/wAAAAAFABEAAAAAAAMAAQASABEAAAABAAAAAQASABEAAAACAP//AQASABEAAAADAP7/AQASABEAAAACAP3/AQASABEAAAABAPz/AQASABEAAAABAP7/AQASABEAAAAAAP3/AQASABEAAAADAPz/AQASABEAAAADAAAAAQASABEAAAD///z/AQASABEAAAD//wIAAQASABEAAAACAAEAAQASABEAAAACAAMAAQASABEAAAADAAIAAQASABEAAAD+/wEAAQASABEAAAD+/wMAAQASABEAAAD+////AQASABEAAAD8////AQASABEAAAD9//7/AQASABEAAAD+//3/AQASABEAAAD8//3/AQASABEAAAD9//z/AQASABEAAAD+//z/AAAQAA8AAAD9//3/AAAQAA8AAAD8//z/AAAQAA8AAAD8//7/AAAQAA8AAAD9////AAAQAA8AAAD+//7/AAAQAA8AAAD8/wAAAAAQAA8AAAD//wEAAAAQAA8AAAABAAEAAAAQAA8AAAADAAEAAAAQAA8AAAADAAMAAAAQAA8AAAACAAIAAAAQAA8AAAABAAMAAAAQAA8AAAAAAAIAAAAQAA8AAAD//wMAAAAQAA8AAAD+/wIAAAAQAA8AAAD9/wMAAAAQAA8AAAD9/wEAAAAQAA8AAAD8/wIAAAAQAA8AAAD9/wIAAQAQABMAAAD8/wMAAQAQABMAAAD8/wEAAQAQABMAAAD9/wAAAQAQABMAAAABAAIAAQASABEAAAAAAAEAAQAJABIAAAAAAAAAAAAPAA4AAAD/////AAAFABEAAAD///7/AQASABEAAAA=")
 tile_set = SubResource("TileSet_atwlb")
 
 [node name="CamTopCenterBoard" type="Camera2D" parent="."]
+position = Vector2(64, 64)
 zoom = Vector2(4.5, 4.5)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="LogicPanel" type="Panel" parent="UI"]
 visible = false
-offset_left = -50.0
-offset_top = -45.0
-offset_right = 50.0
-offset_bottom = 55.0
+self_modulate = Color(0, 0, 0, 1)
+light_mask = 1023
+visibility_layer = 1023
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -559.0
+offset_top = -269.0
+offset_right = -459.0
+offset_bottom = -169.0
+grow_horizontal = 2
+grow_vertical = 2
 rotation = 0.00182382
-script = ExtResource("4_w0h0a")
+scale = Vector2(2.5, 2.5)
+script = ExtResource("4_o4rnw")
 
-[node name="Apply Button" type="Button" parent="UI/LogicPanel"]
+[node name="ApplyButton" type="Button" parent="UI/LogicPanel"]
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 31.0
@@ -2004,21 +2022,79 @@ text = "Apply"
 
 [node name="ColorRect" type="ColorRect" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = -4.9692
-offset_top = -20.0077
-offset_right = 107.031
-offset_bottom = -0.00767899
+offset_left = -5.75
+offset_top = -20.008
+offset_right = 106.25
+offset_bottom = -0.00797844
 rotation = -0.00714684
 color = Color(0, 0, 0, 0.784314)
 
 [node name="Label" type="Label" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = -5.03647
-offset_top = -19.9908
-offset_right = 143.964
-offset_bottom = 3.0092
+offset_left = -5.75
+offset_top = -19.991
+offset_right = 143.25
+offset_bottom = 3.009
 rotation = -0.00444009
 scale = Vector2(0.75, 0.75)
 text = "Movement Options"
 
-[connection signal="pressed" from="UI/LogicPanel/Apply Button" to="UI/LogicPanel" method="_on_button_pressed"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/LogicPanel"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 2.0
+offset_right = 143.0
+offset_bottom = 278.0
+scale = Vector2(0.35, 0.35)
+
+[node name="CheckBoxUp" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+layout_mode = 2
+text = "Up"
+
+[node name="CheckBoxDown" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+layout_mode = 2
+text = "Down"
+
+[node name="CheckBoxLeft" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+layout_mode = 2
+text = "Left"
+
+[node name="CheckBoxRight" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+layout_mode = 2
+text = "Right"
+
+[node name="CheckBoxDownRight" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+layout_mode = 2
+text = "DownRight"
+
+[node name="CheckBoxDownLeft" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+layout_mode = 2
+text = "DownLeft
+"
+
+[node name="CheckBoxUpRight" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+layout_mode = 2
+text = "UpRight"
+
+[node name="CheckBoxUpLeft" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+layout_mode = 2
+text = "UpLeft"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+offset_left = 925.0
+offset_top = 50.0
+offset_right = 1039.0
+offset_bottom = 90.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Restart" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Home" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Home"
+
+[connection signal="pressed" from="UI/LogicPanel/ApplyButton" to="UI/LogicPanel" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Home" to="." method="_on_home_pressed"]

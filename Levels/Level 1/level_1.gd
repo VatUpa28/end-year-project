@@ -91,3 +91,10 @@ func corrupt_piece(piece):
 		piece.allowed_dirs[dirs[i]] = false
 	if piece.has_method("mark_corrupted"):
 		piece.mark_corrupted()
+
+
+func _on_restart_pressed() -> void:
+	get_tree().reload_current_scene()
+
+func _on_home_pressed() -> void:
+	get_tree().change_scene_to_file("res://Main/MainMenu/MainMenu.tscn")

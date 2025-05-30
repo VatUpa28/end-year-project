@@ -1,12 +1,13 @@
 [gd_scene load_steps=8 format=4 uid="uid://4s2uh67x8h3a"]
 
-[ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://Pieces/level_1.gd" id="1_xsdw8"]
-[ext_resource type="Texture2D" uid="uid://bqr0xe7kw4v2l" path="res://Tiles/white_tile.png" id="2_4m2h1"]
-[ext_resource type="Texture2D" uid="uid://csxiaan07qt1x" path="res://Tiles/black_tile.png" id="3_41qmv"]
-[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 1/logic_panel.gd" id="4_n2mur"]
+[ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://Levels/Level 1/level_1.gd" id="1_xsdw8"]
+[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 2/logic_panel.gd" id="4_n2mur"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vl1nt"]
+load_path = "res://.godot/imported/white_tile.png-86eed4146de1e0c552a7ca6a0914a31e.ctex"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_trxdi"]
-texture = ExtResource("2_4m2h1")
+texture = SubResource("CompressedTexture2D_vl1nt")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -969,8 +970,11 @@ texture = ExtResource("2_4m2h1")
 29:30/0 = 0
 30:30/0 = 0
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_owatk"]
+load_path = "res://.godot/imported/black_tile.png-3d46440024f12aec9fb1d58fac8a687c.ctex"
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6xh2g"]
-texture = ExtResource("3_41qmv")
+texture = SubResource("CompressedTexture2D_owatk")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -2076,4 +2080,21 @@ text = "UpRight"
 layout_mode = 2
 text = "UpLeft"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="UI"]
+offset_left = 925.0
+offset_top = 50.0
+offset_right = 1039.0
+offset_bottom = 90.0
+scale = Vector2(1.5, 1.5)
+
+[node name="Restart" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Restart"
+
+[node name="Home" type="Button" parent="UI/HBoxContainer"]
+layout_mode = 2
+text = "Home"
+
 [connection signal="pressed" from="UI/LogicPanel/ApplyButton" to="UI/LogicPanel" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/HBoxContainer/Home" to="." method="_on_home_pressed"]
