@@ -15,12 +15,14 @@ extends Node2D
 	preload("res://Pieces/black-king.tscn")
 ]
 
-@onready var board = $Board  # Your TileMap node
+@onready var board = $Board
 @onready var logic_panel = $UI/LogicPanel
 
 const GRID_SIZE = 8
 const NUM_PIECES = 12
 const CORRUPTION_CHANCE = 0.3
+
+var selected_piece = null
 
 func _ready():
 	randomize()
@@ -42,29 +44,35 @@ func generate_random_board():
 		var cell = get_random_grid_position(used_positions)
 		used_positions.append(cell)
 
-		# Get the top-left corner of the tile in local coords
+		# Convert tile position to world position
 		var tile_pos = board.map_to_local(cell)
-		# Convert to global scene position
 		var world_pos = board.to_global(tile_pos)
 
-		# Place the piece
+		# Place piece
 		add_child(piece)
 		piece.global_position = world_pos
 
-		# Default movement directions
-		piece.allowed_dirs = {
-			"up": true,
-			"down": true,
-			"left": true,
-			"right": true,
-			"up_left": false,
-			"up_right": false,
-			"down_left": false,
-			"down_right": false
-		}
-
+		# Randomly corrupt directions
 		if randf() < CORRUPTION_CHANCE:
 			corrupt_piece(piece)
+
+		# Connect signal to logic panel and select/highlight logic
+		piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))
+
+func on_piece_clicked(piece):
+	if selected_piece and selected_piece != piece:
+		selected_piece.set_highlight(false)
+		selected_piece = piece
+		selected_piece.set_highlight(true)
+		logic_panel.update_with_piece(piece)
+	elif selected_piece == piece:
+		selected_piece.set_highlight(false)
+		selected_piece = null
+		logic_panel.visible = false
+	else:
+		selected_piece = piece
+		selected_piece.set_highlight(true)
+		logic_panel.update_with_piece(piece)
 
 func get_random_grid_position(used: Array) -> Vector2i:
 	while true:
@@ -76,13 +84,10 @@ func get_random_grid_position(used: Array) -> Vector2i:
 	return Vector2i(0, 0)
 
 func corrupt_piece(piece):
-	var dirs = ["up", "down", "left", "right"]
+	var dirs = ["up", "down", "left", "right", "up_left", "up_right", "down_left", "down_right"]
 	dirs.shuffle()
 	var corrupt_count = randi() % 2 + 1
 	for i in range(corrupt_count):
 		piece.allowed_dirs[dirs[i]] = false
 	if piece.has_method("mark_corrupted"):
 		piece.mark_corrupted()
-
-func _on_ResetButton_pressed():
-	get_tree().reload_current_scene()

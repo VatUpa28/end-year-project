@@ -1,24 +1,25 @@
 extends Area2D
 
-# Declare allowed directions dictionary
-var allowed_dirs: Dictionary = {
-	"up": false,
-	"down": false,
-	"left": false,
-	"right": false,
-	"up_left": false,
-	"up_right": false,
-	"down_left": false,
-	"down_right": false
-}
+signal piece_clicked(piece)
+
+# Directional movement flags
+var allowed_dirs: Dictionary = {}
 
 var selected = false
-@onready var logic_panel = get_node_or_null("UI/LogicPanel")
 
-func _on_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.pressed:
+func _ready():
+	pass  # Optional: any setup code
+
+func _input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 		selected = !selected
-		if selected and logic_panel:
-			logic_panel.show_for(self)
-		elif logic_panel:
-			logic_panel.visible = false
+		emit_signal("piece_clicked", self)
+
+var original_modulate := Color.WHITE
+
+func set_highlight(enable: bool) -> void:
+	if enable:
+		# Use a strong but clean highlight color (cyan works well)
+		modulate = Color(0.3, 1.0, 1.0, 1.0)  # Cyan
+	else:
+		modulate = original_modulate

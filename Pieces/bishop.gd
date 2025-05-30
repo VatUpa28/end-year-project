@@ -1,7 +1,7 @@
 extends "res://Pieces/piece.gd"
 
 func _ready():
-	var allowed_dirs: Dictionary = {
+	allowed_dirs = {
 		"up": false,
 		"down": false,
 		"left": false,

@@ -13,8 +13,7 @@ var knight_moves := [
 ]
 
 func _ready():
-	# Disable all generic directions for knight
-	var allowed_dirs: Dictionary = {
+	allowed_dirs = {
 		"up": false,
 		"down": false,
 		"left": false,
