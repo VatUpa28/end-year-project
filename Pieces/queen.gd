@@ -11,3 +11,8 @@ func _ready():
 		"down_left": true,
 		"down_right": true
 	}
+
+var is_corrupted = false
+
+func mark_corrupted():
+	is_corrupted = true

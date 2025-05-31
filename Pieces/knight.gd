@@ -33,3 +33,8 @@ func get_knight_moves(current_pos: Vector2i) -> Array:
 		if new_pos.x >= 0 and new_pos.x < 8 and new_pos.y >= 0 and new_pos.y < 8:
 			moves.append(new_pos)
 	return moves
+
+var is_corrupted = false
+
+func mark_corrupted():
+	is_corrupted = true

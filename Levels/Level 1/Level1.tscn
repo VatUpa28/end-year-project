@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=4 uid="uid://4s2uh67x8h3a"]
 
 [ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://Levels/Level 1/level_1.gd" id="1_xsdw8"]
-[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 2/logic_panel.gd" id="4_n2mur"]
+[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 1/logic_panel.gd" id="4_n2mur"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vl1nt"]
 load_path = "res://.godot/imported/white_tile.png-86eed4146de1e0c552a7ca6a0914a31e.ctex"

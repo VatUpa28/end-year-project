@@ -5,6 +5,5 @@ func show_win():
 	$LoseLabel.visible=false
 
 func show_lose():
-		$LoseLabel.visible=true
-		$WinLabel.visible=false
-		
+	$LoseLabel.visible=true
+	$WinLabel.visible=false
