@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1s1xmqgm6j47"]
 
 [ext_resource type="Script" uid="uid://dtyhxikvexsxt" path="res://Pieces/knight.gd" id="1_6fw1k"]
-[ext_resource type="Texture2D" uid="uid://ixnvnxqxjudy" path="res://Pieces/whiteHorse.jpg" id="2_6fw1k"]
+[ext_resource type="Texture2D" uid="uid://dmdn7egei1c3m" path="res://Pieces/WhiteKnight.png" id="2_6fw1k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hisf2"]
 size = Vector2(16, 16)

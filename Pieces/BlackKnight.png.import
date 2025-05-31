@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csxiaan07qt1x"
-path="res://.godot/imported/black_tile.png-3d46440024f12aec9fb1d58fac8a687c.ctex"
+uid="uid://dsarsq67g6qde"
+path="res://.godot/imported/BlackKnight.png-89a924117e3bec86768ad7bbddde983e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/black_tile.png"
-dest_files=["res://.godot/imported/black_tile.png-3d46440024f12aec9fb1d58fac8a687c.ctex"]
+source_file="res://Pieces/BlackKnight.png"
+dest_files=["res://.godot/imported/BlackKnight.png-89a924117e3bec86768ad7bbddde983e.ctex"]
 
 [params]
 

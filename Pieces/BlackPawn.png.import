@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqr0xe7kw4v2l"
-path="res://.godot/imported/white_tile.png-86eed4146de1e0c552a7ca6a0914a31e.ctex"
+uid="uid://ds0qdnvuyhwwk"
+path="res://.godot/imported/BlackPawn.png-ca7e54cca7cdd8bc55329507c55338de.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Tiles/white_tile.png"
-dest_files=["res://.godot/imported/white_tile.png-86eed4146de1e0c552a7ca6a0914a31e.ctex"]
+source_file="res://Pieces/BlackPawn.png"
+dest_files=["res://.godot/imported/BlackPawn.png-ca7e54cca7cdd8bc55329507c55338de.ctex"]
 
 [params]
 

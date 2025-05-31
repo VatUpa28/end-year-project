@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ixnvnxqxjudy"
-path="res://.godot/imported/whiteHorse.jpg-fe732c8e3664388528bb1d9b2b7abde7.ctex"
+uid="uid://d3mi87eobxqj8"
+path="res://.godot/imported/WhiteKing.png-0ceca8c864f91abcc7943ba78ee550f2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pieces/whiteHorse.jpg"
-dest_files=["res://.godot/imported/whiteHorse.jpg-fe732c8e3664388528bb1d9b2b7abde7.ctex"]
+source_file="res://Pieces/WhiteKing.png"
+dest_files=["res://.godot/imported/WhiteKing.png-0ceca8c864f91abcc7943ba78ee550f2.ctex"]
 
 [params]
 

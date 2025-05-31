@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dg05ebvx268a6"]
 
 [ext_resource type="Script" uid="uid://db4s03ygaqiuj" path="res://Pieces/pawn.gd" id="1_ve8ev"]
-[ext_resource type="Texture2D" uid="uid://ccq887wthfefy" path="res://Pieces/whitePawn.jpg" id="2_ve8ev"]
+[ext_resource type="Texture2D" uid="uid://mqey7vnqex76" path="res://Pieces/WhitePawn.png" id="2_ve8ev"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hisf2"]
 size = Vector2(16, 16)

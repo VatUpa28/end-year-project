@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://crju1vbxe8ytt"
-path="res://.godot/imported/blackPawn.jpg-b0595d043dacc569b11993fd30bf67ea.ctex"
+uid="uid://yc3cnl0m85ev"
+path="res://.godot/imported/LightBrown.jpg-15493cf7632d8ec1c4b510668cefcb68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pieces/blackPawn.jpg"
-dest_files=["res://.godot/imported/blackPawn.jpg-b0595d043dacc569b11993fd30bf67ea.ctex"]
+source_file="res://Tiles/LightBrown.jpg"
+dest_files=["res://.godot/imported/LightBrown.jpg-15493cf7632d8ec1c4b510668cefcb68.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0j6nw67vf321"
-path="res://.godot/imported/whiteRook.jpg-ac7b2d04e6aaedcbfdda7b2113737240.ctex"
+uid="uid://mqey7vnqex76"
+path="res://.godot/imported/WhitePawn.png-b1fc64e3d4c0fc8a32243992f70cad85.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pieces/whiteRook.jpg"
-dest_files=["res://.godot/imported/whiteRook.jpg-ac7b2d04e6aaedcbfdda7b2113737240.ctex"]
+source_file="res://Pieces/WhitePawn.png"
+dest_files=["res://.godot/imported/WhitePawn.png-b1fc64e3d4c0fc8a32243992f70cad85.ctex"]
 
 [params]
 

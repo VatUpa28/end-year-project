@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://j7kifo7wfo88"]
 
 [ext_resource type="Script" uid="uid://c6j1etp5niwn0" path="res://Pieces/bishop.gd" id="1_eorwl"]
-[ext_resource type="Texture2D" uid="uid://deqea67yogc" path="res://Pieces/blackBishop.jpg" id="2_eorwl"]
+[ext_resource type="Texture2D" uid="uid://tk4iaafp1rkd" path="res://Pieces/BlackBishop.png" id="2_eorwl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hisf2"]
 size = Vector2(16, 16)

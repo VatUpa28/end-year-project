@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bbdtp5ioo2ujl"]
 
 [ext_resource type="Script" uid="uid://spqy38p7hpcx" path="res://Pieces/rook.gd" id="1_a54r2"]
-[ext_resource type="Texture2D" uid="uid://c0j6nw67vf321" path="res://Pieces/whiteRook.jpg" id="2_a54r2"]
+[ext_resource type="Texture2D" uid="uid://cmb8kygyjrkgr" path="res://Pieces/WhiteRook.png" id="2_a54r2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hisf2"]
 size = Vector2(16, 16)

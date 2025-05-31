@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfsdg21ne5or1"
-path="res://.godot/imported/blackHorse.jpg-9d955f4d69eb923135f601a529cb149c.ctex"
+uid="uid://cxm2aj53sljpi"
+path="res://.godot/imported/BlackRook.png-8326dc26663689bb00065ea1ebe48336.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pieces/blackHorse.jpg"
-dest_files=["res://.godot/imported/blackHorse.jpg-9d955f4d69eb923135f601a529cb149c.ctex"]
+source_file="res://Pieces/BlackRook.png"
+dest_files=["res://.godot/imported/BlackRook.png-8326dc26663689bb00065ea1ebe48336.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drb020y3q7p4m"
-path="res://.godot/imported/blackRook.jpg-69b61b4f51460494b98bd617511bed31.ctex"
+uid="uid://ygbk4kfuuoy4"
+path="res://.godot/imported/DarkBrown.jpg-00aa2fa500502530d996789a8f26983d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Pieces/blackRook.jpg"
-dest_files=["res://.godot/imported/blackRook.jpg-69b61b4f51460494b98bd617511bed31.ctex"]
+source_file="res://Tiles/DarkBrown.jpg"
+dest_files=["res://.godot/imported/DarkBrown.jpg-00aa2fa500502530d996789a8f26983d.ctex"]
 
 [params]
 
