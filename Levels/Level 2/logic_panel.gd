@@ -1,7 +1,7 @@
 extends Control
 
 var current_piece = null
-var allowed_dirs = {
+var allowed_dirs = { # not needed
 	"up": false,
 	"down": false,
 	"left": false,

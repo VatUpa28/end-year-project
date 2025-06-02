@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://hddk0213e151" path="res://Levels/Level 2/level_2.gd" id="1_aat58"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_aat58"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_n5uh2"]
-[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 1/logic_panel.gd" id="4_o4rnw"]
+[ext_resource type="Script" uid="uid://dtlfyxn0gwd0h" path="res://Levels/Level 2/logic_panel.gd" id="4_o4rnw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2prh"]
 texture = ExtResource("2_aat58")
@@ -140,38 +140,29 @@ offset_right = 143.0
 offset_bottom = 278.0
 scale = Vector2(0.35, 0.35)
 
-[node name="CheckBoxUp" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+[node name="LineEditUp" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
-text = "Up"
 
-[node name="CheckBoxDown" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+[node name="LineEditDown" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
-text = "Down"
 
-[node name="CheckBoxLeft" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+[node name="LineEditLeft" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
-text = "Left"
 
-[node name="CheckBoxRight" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+[node name="LineEditRight" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
-text = "Right"
 
-[node name="CheckBoxDownRight" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+[node name="LineEditDownRight" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
-text = "DownRight"
 
-[node name="CheckBoxDownLeft" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+[node name="LineEditDownLeft" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
-text = "DownLeft
-"
 
-[node name="CheckBoxUpRight" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+[node name="LineEditUpRight" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
-text = "UpRight"
 
-[node name="CheckBoxUpLeft" type="CheckBox" parent="UI/LogicPanel/VBoxContainer"]
+[node name="LineEditUpLeft" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
-text = "UpLeft"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 offset_left = 925.0
