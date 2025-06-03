@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://Levels/Level 1/level_1.gd" id="1_xsdw8"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_xsdw8"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_4m2h1"]
-[ext_resource type="Script" path="res://Levels/Level 1/logic_panel.gd" id="4_xsdw8"]
+[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 1/logic_panel.gd" id="4_xsdw8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_41qmv"]
 texture = ExtResource("2_xsdw8")
@@ -79,23 +79,26 @@ use_parent_material = true
 position = Vector2(64, 64)
 tile_set = SubResource("TileSet_atwlb")
 
-[node name="HUD" type="CanvasLayer" parent="Board/Layer1"]
-visible = false
+[node name="CamTopCenterBoard" type="Camera2D" parent="."]
+position = Vector2(64, 64)
+zoom = Vector2(4.5, 4.5)
 
-[node name="WinLosePanel" type="Panel" parent="Board/Layer1/HUD"]
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="WinLosePanel" type="Panel" parent="HUD"]
 offset_left = -100.0
 offset_top = -30.0
 offset_right = 300.0
 offset_bottom = 170.0
 
-[node name="WinLabel" type="Label" parent="Board/Layer1/HUD/WinLosePanel"]
+[node name="WinLabel" type="Label" parent="HUD/WinLosePanel"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 text = "You Win!
 "
 
-[node name="LoseLabel" type="Label" parent="Board/Layer1/HUD/WinLosePanel"]
+[node name="LoseLabel" type="Label" parent="HUD/WinLosePanel"]
 visible = false
 layout_mode = 0
 offset_right = 40.0
@@ -103,22 +106,18 @@ offset_bottom = 23.0
 text = "Try Again!
 "
 
-[node name="RetryButton" type="Button" parent="Board/Layer1/HUD/WinLosePanel"]
+[node name="RetryButton" type="Button" parent="HUD/WinLosePanel"]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Retry"
 
-[node name="NextButton" type="Button" parent="Board/Layer1/HUD/WinLosePanel"]
+[node name="NextButton" type="Button" parent="HUD/WinLosePanel"]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Next
 "
-
-[node name="CamTopCenterBoard" type="Camera2D" parent="."]
-position = Vector2(64, 64)
-zoom = Vector2(4.5, 4.5)
 
 [node name="UI" type="CanvasLayer" parent="."]
 

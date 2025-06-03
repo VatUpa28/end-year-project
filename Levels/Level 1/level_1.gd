@@ -36,28 +36,47 @@ func generate_random_board():
 
 	var used_positions: Array = []
 
-	for i in range(NUM_PIECES):
-		var piece_scene = piece_scenes[randi() % piece_scenes.size()]
-		var piece = piece_scene.instantiate()
+	# Define piece limits (standard chess rules)
+	var max_piece_counts = {
+		"white-pawn": 8, "white-rook": 2, "white-knight": 2, "white-bishop": 2,
+		"white-queen": 1, "white-king": 1,
+		"black-pawn": 8, "black-rook": 2, "black-knight": 2, "black-bishop": 2,
+		"black-queen": 1, "black-king": 1
+	}
 
-		# Pick a unique grid cell
-		var cell = get_random_grid_position(used_positions)
-		used_positions.append(cell)
+	var current_piece_counts = {}
+	for name in max_piece_counts.keys():
+		current_piece_counts[name] = 0
 
-		# Convert tile position to world position
-		var tile_pos = board.map_to_local(cell)
-		var world_pos = board.to_global(tile_pos)
+	var available_pieces = piece_scenes.duplicate()
 
-		# Place piece
-		add_child(piece)
-		piece.global_position = world_pos
+	var attempts = 0  # Prevent infinite loop
+	while used_positions.size() < NUM_PIECES and attempts < 100:
+		attempts += 1
 
-		# Randomly corrupt directions
-		if randf() < CORRUPTION_CHANCE:
-			corrupt_piece(piece)
+		var piece_scene = available_pieces[randi() % available_pieces.size()]
+		var scene_path = piece_scene.resource_path
+		var piece_name = scene_path.get_file().get_basename()  # like "white-rook"
 
-		# Connect signal to logic panel and select/highlight logic
-		piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))
+		if current_piece_counts[piece_name] < max_piece_counts[piece_name]:
+			current_piece_counts[piece_name] += 1
+
+			var piece = piece_scene.instantiate()  # <--- THIS MUST BE HERE
+
+			var cell = get_random_grid_position(used_positions)
+			used_positions.append(cell)
+
+			var tile_pos = board.map_to_local(cell)
+			var world_pos = board.to_global(tile_pos)
+
+			add_child(piece)
+			piece.global_position = world_pos
+
+			if randf() < CORRUPTION_CHANCE:
+				corrupt_piece(piece)
+
+			piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))  # <--- USE IT INSIDE THE BLOCK
+
 
 func on_piece_clicked(piece):
 	if selected_piece and selected_piece != piece:
