@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://4s2uh67x8h3a"]
+[gd_scene load_steps=9 format=3 uid="uid://4s2uh67x8h3a"]
 
 [ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://Levels/Level 1/level_1.gd" id="1_xsdw8"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_xsdw8"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_4m2h1"]
-[ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 1/logic_panel.gd" id="4_xsdw8"]
+[ext_resource type="Script" uid="uid://wsnjxtk4ih02" path="res://Levels/win_lose_panel.gd" id="4_4m2h1"]
+[ext_resource type="Script" path="res://Levels/Level 1/logic_panel.gd" id="4_xsdw8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_41qmv"]
 texture = ExtResource("2_xsdw8")
@@ -86,15 +87,20 @@ zoom = Vector2(4.5, 4.5)
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="WinLosePanel" type="Panel" parent="HUD"]
-offset_left = -100.0
-offset_top = -30.0
-offset_right = 300.0
-offset_bottom = 170.0
+visible = false
+offset_left = 236.0
+offset_top = 100.0
+offset_right = 928.0
+offset_bottom = 547.0
+script = ExtResource("4_4m2h1")
 
 [node name="WinLabel" type="Label" parent="HUD/WinLosePanel"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 198.0
+offset_top = 103.0
+offset_right = 266.0
+offset_bottom = 152.0
+scale = Vector2(4, 4)
 text = "You Win!
 "
 
@@ -106,18 +112,26 @@ offset_bottom = 23.0
 text = "Try Again!
 "
 
-[node name="RetryButton" type="Button" parent="HUD/WinLosePanel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/WinLosePanel"]
 layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Retry"
+offset_left = 131.0
+offset_top = 193.0
+offset_right = 290.0
+offset_bottom = 251.0
+scale = Vector2(2.5, 2.5)
 
-[node name="NextButton" type="Button" parent="HUD/WinLosePanel"]
-layout_mode = 0
-offset_right = 8.0
-offset_bottom = 8.0
+[node name="HomeButton" type="Button" parent="HUD/WinLosePanel/HBoxContainer"]
+layout_mode = 2
+text = "Home"
+
+[node name="NextButton" type="Button" parent="HUD/WinLosePanel/HBoxContainer"]
+layout_mode = 2
 text = "Next
 "
+
+[node name="RetryButton" type="Button" parent="HUD/WinLosePanel/HBoxContainer"]
+layout_mode = 2
+text = "Retry"
 
 [node name="UI" type="CanvasLayer" parent="."]
 

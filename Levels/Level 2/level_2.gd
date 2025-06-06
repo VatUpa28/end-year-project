@@ -19,14 +19,16 @@ extends Node2D
 @onready var logic_panel = $UI/LogicPanel
 
 const GRID_SIZE = 8
-const NUM_PIECES = 12
+const NUM_PIECES = 12 # why is num pieces 12?
 const CORRUPTION_CHANCE = 0.3
 
 var selected_piece = null
+@onready var level_timer = $LevelTimer
 
 func _ready():
 	randomize()
 	generate_random_board()
+	level_timer.start()
 
 func generate_random_board():
 	# Remove old pieces
@@ -35,29 +37,81 @@ func generate_random_board():
 			child.queue_free()
 
 	var used_positions: Array = []
+	
+	const MAX_PIECES = {
+		"white" : {
+			"king" : 1,
+			"queen" : 1,
+			"rook" : 2,
+			"bishop" : 2,
+			"knight" : 2,
+			"pawn" : 8
+		},
+		"black" : {
+			"king" : 1,
+			"queen" : 1,
+			"rook" : 2,
+			"bishop" : 2,
+			"knight" : 2,
+			"pawn" : 8
+		}
+	}
+	
+	var current_piece_counts = {
+		"white" : {
+			"king" : 0,
+			"queen" : 0,
+			"rook" : 0,
+			"bishop" : 0,
+			"knight" : 0,
+			"pawn" : 8
+		},
+		"black" : {
+			"king" : 0,
+			"queen" : 0,
+			"rook" : 0,
+			"bishop" : 0,
+			"knight" : 0,
+			"pawn" : 0
+		}
+	}
+	var available_pieces = piece_scenes.duplicate()
+	
+	var attempts=0
+	while used_positions.size()<NUM_PIECES and attempts<1000: # needed mroe attempts, otherwise only added 6-7 pieces to the chess board
+		attempts+=1
+	
+		for i in range(NUM_PIECES):
+			attempts += 1
 
-	for i in range(NUM_PIECES):
-		var piece_scene = piece_scenes[randi() % piece_scenes.size()]
-		var piece = piece_scene.instantiate()
+		var piece_scene = available_pieces[randi() % available_pieces.size()]
+		var scene_path = piece_scene.resource_path
+		var piece_name = scene_path.get_file().get_basename()  # like "white-rook"
+		
+		var parts = piece_name.split("-")
+		if parts.size()<2:
+			continue
+		var color = parts[0]
+		var piece_type = parts[1] 
+		
+		if current_piece_counts[color][piece_type] < MAX_PIECES[color][piece_type]:
+			current_piece_counts[color][piece_type] += 1
 
-		# Pick a unique grid cell
-		var cell = get_random_grid_position(used_positions)
-		used_positions.append(cell)
+			var piece = piece_scene.instantiate() 
 
-		# Convert tile position to world position
-		var tile_pos = board.map_to_local(cell)
-		var world_pos = board.to_global(tile_pos)
+			var cell = get_random_grid_position(used_positions)
+			used_positions.append(cell)
 
-		# Place piece
-		add_child(piece)
-		piece.global_position = world_pos
+			var tile_pos = board.map_to_local(cell)
+			var world_pos = board.to_global(tile_pos)
 
-		# Randomly corrupt directions
-		if randf() < CORRUPTION_CHANCE:
-			corrupt_piece(piece)
+			add_child(piece)
+			piece.global_position = world_pos
 
-		# Connect signal to logic panel and select/highlight logic
-		piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))
+			if randf() < CORRUPTION_CHANCE:
+				corrupt_piece(piece)
+
+			piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))  # <--- USE IT INSIDE THE BLOCK
 
 func on_piece_clicked(piece):
 	if selected_piece and selected_piece != piece:

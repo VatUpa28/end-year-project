@@ -55,7 +55,6 @@ func update_with_piece(piece):
 	le_downleft.text = str(piece.allowed_dirs.get("down_left", false))
 	le_downright.text = str(piece.allowed_dirs.get("down_right", false))
 
-	_update_code_display()
 
 func _on_ApplyButton_pressed():
 	if current_piece:
