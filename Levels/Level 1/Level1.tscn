@@ -86,12 +86,14 @@ zoom = Vector2(4.5, 4.5)
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="WinLosePanel" type="Panel" parent="HUD"]
+visible = false
 offset_left = -100.0
 offset_top = -30.0
 offset_right = 300.0
 offset_bottom = 170.0
 
 [node name="WinLabel" type="Label" parent="HUD/WinLosePanel"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
@@ -107,12 +109,14 @@ text = "Try Again!
 "
 
 [node name="RetryButton" type="Button" parent="HUD/WinLosePanel"]
+visible = false
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 text = "Retry"
 
 [node name="NextButton" type="Button" parent="HUD/WinLosePanel"]
+visible = false
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
@@ -122,7 +126,6 @@ text = "Next
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="LogicPanel" type="Panel" parent="UI"]
-visible = false
 self_modulate = Color(0, 0, 0, 1)
 light_mask = 1023
 visibility_layer = 1023
@@ -145,8 +148,7 @@ script = ExtResource("4_xsdw8")
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 31.0
-rotation = 0.0248209
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.4, 0.4)
 text = "Apply"
 
 [node name="ColorRect" type="ColorRect" parent="UI/LogicPanel"]
