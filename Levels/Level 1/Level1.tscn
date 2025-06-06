@@ -95,6 +95,7 @@ offset_bottom = 547.0
 script = ExtResource("4_4m2h1")
 
 [node name="WinLabel" type="Label" parent="HUD/WinLosePanel"]
+visible = false
 layout_mode = 0
 offset_left = 198.0
 offset_top = 103.0
@@ -126,8 +127,7 @@ text = "Home"
 
 [node name="NextButton" type="Button" parent="HUD/WinLosePanel/HBoxContainer"]
 layout_mode = 2
-text = "Next
-"
+text = "Next"
 
 [node name="RetryButton" type="Button" parent="HUD/WinLosePanel/HBoxContainer"]
 layout_mode = 2
@@ -136,7 +136,6 @@ text = "Retry"
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="LogicPanel" type="Panel" parent="UI"]
-visible = false
 self_modulate = Color(0, 0, 0, 1)
 light_mask = 1023
 visibility_layer = 1023
@@ -159,8 +158,7 @@ script = ExtResource("4_xsdw8")
 layout_mode = 0
 offset_right = 52.0
 offset_bottom = 31.0
-rotation = 0.0248209
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.4, 0.4)
 text = "Apply"
 
 [node name="ColorRect" type="ColorRect" parent="UI/LogicPanel"]
