@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://ddiyyuqnkdsr5"]
+[gd_scene load_steps=9 format=4 uid="uid://ddiyyuqnkdsr5"]
 
 [ext_resource type="Script" uid="uid://hddk0213e151" path="res://Levels/Level 2/level_2.gd" id="1_aat58"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_aat58"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_n5uh2"]
 [ext_resource type="Script" uid="uid://dtlfyxn0gwd0h" path="res://Levels/Level 2/logic_panel.gd" id="4_o4rnw"]
+[ext_resource type="Script" uid="uid://7ixnhpsbsr4m" path="res://Levels/Level 2/timer_display_label.gd" id="5_n5uh2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2prh"]
 texture = ExtResource("2_aat58")
@@ -106,8 +107,8 @@ script = ExtResource("4_o4rnw")
 
 [node name="ApplyButton" type="Button" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_right = 52.0
-offset_bottom = 31.0
+offset_right = 74.0
+offset_bottom = 49.0
 rotation = 0.0248209
 scale = Vector2(0.2, 0.2)
 text = "Apply"
@@ -163,48 +164,11 @@ layout_mode = 2
 [node name="LineEditUpLeft" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/LogicPanel"]
+[node name="CodeDisplay" type="TextEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
-offset_left = 30.0
-offset_top = 104.2
-offset_right = 143.0
-offset_bottom = 392.2
-
-[node name="Code1" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-text = "allowed_dirs = {"
-
-[node name="Code2" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-text = "	\"up\" : "
-
-[node name="Code3" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-text = "	\"down\" : "
-
-[node name="Code4" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-text = "	\"left\" : "
-
-[node name="Code5" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-text = "	\"right\" : "
-
-[node name="Code6" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-text = "	\"up-left\" : "
-
-[node name="Code7" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-text = "	\"up-right\" : "
-
-[node name="Code8" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-text = "	\"down-left\" : "
-
-[node name="Code9" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-text = "	\"down-right\" : "
+text = "fgbnhgfg
+"
+editable = false
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 offset_left = 925.0
@@ -220,6 +184,20 @@ text = "Restart"
 [node name="Home" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
 text = "Home"
+
+[node name="LevelTimer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="TimerDisplayLabel" type="Label" parent="HUD"]
+visibility_layer = 513
+offset_left = 9.0
+offset_top = 41.0
+offset_right = 109.0
+offset_bottom = 99.0
+script = ExtResource("5_n5uh2")
 
 [connection signal="pressed" from="UI/LogicPanel/ApplyButton" to="UI/LogicPanel" method="_on_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/Restart" to="." method="_on_restart_pressed"]

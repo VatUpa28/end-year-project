@@ -1,6 +1,6 @@
 extends "res://Pieces/piece.gd"
 
-func _ready():
+func _init():
 	allowed_dirs = {
 		"up": false,
 		"down": false,
@@ -11,8 +11,6 @@ func _ready():
 		"down_left": true,
 		"down_right": true
 	}
-
-var is_corrupted = false
-
-func mark_corrupted():
-	is_corrupted = true
+	
+func get_allowed_dirs() -> Dictionary:
+	return allowed_dirs.duplicate()

@@ -13,49 +13,79 @@ var current_piece = null
 @onready var apply_button = $ApplyButton
 
 func _ready():
-	randomize()  # Ensure randomness works
-	apply_button.pressed.connect(Callable(self, "_on_ApplyButton_pressed"))
-	visible = false  # Hide panel initially
+	if apply_button == null:
+		print("ApplyButton node not found!")
+	else:
+		apply_button.pressed.connect(Callable(self, "_on_ApplyButton_pressed"))
+	visible = false
 
 func update_with_piece(piece):
 	current_piece = piece
 	visible = true
 
-	if piece.name.to_lower().find("knight") != -1 and piece.is_corrupted:
-		var dirs = ["up", "down", "left", "right", "up_left", "up_right", "down_left", "down_right"]
-		dirs.shuffle()
+	print("LogicPanel: updating piece ", piece.name)
 
-		var corrupt_count = randi() % 4 + 2  # corrupt 2 to 5 directions
+	var directions = ["up", "down", "left", "right", "up_left", "up_right", "down_left", "down_right"]
 
-		# Start all directions as allowed
-		for dir in dirs:
-			piece.allowed_dirs[dir] = true
+	for dir in directions:
+		var val = piece.allowed_dirs.get(dir, false)
+		print("Direction:", dir, "Value:", val, "Type:", typeof(val))
 
-		# Corrupt random directions
-		for i in range(corrupt_count):
-			piece.allowed_dirs[dirs[i]] = false
+		# Defensive check: if not bool, print warning and fix
+		if typeof(val) != TYPE_BOOL:
+			print("Warning: allowed_dirs[", dir, "] is not bool but type ", typeof(val))
+			val = false
 
-	# Set checkboxes to reflect allowed_dirs
-	cb_up.set_pressed(piece.allowed_dirs.get("up", false))
-	cb_down.set_pressed(piece.allowed_dirs.get("down", false))
-	cb_left.set_pressed(piece.allowed_dirs.get("left", false))
-	cb_right.set_pressed(piece.allowed_dirs.get("right", false))
-	cb_upleft.set_pressed(piece.allowed_dirs.get("up_left", false))
-	cb_upright.set_pressed(piece.allowed_dirs.get("up_right", false))
-	cb_downleft.set_pressed(piece.allowed_dirs.get("down_left", false))
-	cb_downright.set_pressed(piece.allowed_dirs.get("down_right", false))
+		var toggle = null
+		match dir:
+			"up":
+				toggle = cb_up
+			"down":
+				toggle = cb_down
+			"left":
+				toggle = cb_left
+			"right":
+				toggle = cb_right
+			"up_left":
+				toggle = cb_upleft
+			"up_right":
+				toggle = cb_upright
+			"down_left":
+				toggle = cb_downleft
+			"down_right":
+				toggle = cb_downright
+
+		if toggle == null:
+			print("ERROR: Toggle for ", dir, " is null!")
+		else:
+			print("Setting toggle for ", dir, " to ", val)
+			toggle.set_pressed(val)
+
 
 func _on_ApplyButton_pressed():
-	if current_piece:
-		current_piece.allowed_dirs["up"] = cb_up.is_pressed()
-		current_piece.allowed_dirs["down"] = cb_down.is_pressed()
-		current_piece.allowed_dirs["left"] = cb_left.is_pressed()
-		current_piece.allowed_dirs["right"] = cb_right.is_pressed()
-		current_piece.allowed_dirs["up_left"] = cb_upleft.is_pressed()
-		current_piece.allowed_dirs["up_right"] = cb_upright.is_pressed()
-		current_piece.allowed_dirs["down_left"] = cb_downleft.is_pressed()
-		current_piece.allowed_dirs["down_right"] = cb_downright.is_pressed()
+	if current_piece == null:
+		print("Apply pressed but no current piece")
+		return
 
-		current_piece.set_highlight(false)
-		current_piece = null
-		visible = false
+	current_piece.allowed_dirs["up"] = cb_up.pressed
+	current_piece.allowed_dirs["down"] = cb_down.pressed
+	current_piece.allowed_dirs["left"] = cb_left.pressed
+	current_piece.allowed_dirs["right"] = cb_right.pressed
+	current_piece.allowed_dirs["up_left"] = cb_upleft.pressed
+	current_piece.allowed_dirs["up_right"] = cb_upright.pressed
+	current_piece.allowed_dirs["down_left"] = cb_downleft.pressed
+	current_piece.allowed_dirs["down_right"] = cb_downright.pressed
+
+	# Corrupted means any direction set to false (adjust logic if needed)
+	var corrupted = false
+	for value in current_piece.allowed_dirs.values():
+		if typeof(value) == TYPE_BOOL and value == false:
+			corrupted = true
+			break
+
+	current_piece.mark_corrupted(corrupted)
+	current_piece.set_meta("corrupted", corrupted)
+
+	print("Applied changes. Piece ", current_piece.name, " corrupted: ", corrupted)
+
+	visible = false
