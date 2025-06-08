@@ -18,6 +18,8 @@ extends Node2D
 @onready var board = $Board
 @onready var logic_panel := $UI/LogicPanel
 @onready var win_panel := $UI/WinPanel
+@onready var reset_button := $UI/HBoxContainer/Restart
+@onready var home_button := $UI/HBoxContainer/Home
 
 const GRID_SIZE = 8
 const NUM_PIECES = 12
@@ -50,6 +52,7 @@ func generate_random_board():
 		current_piece_counts[name] = 0
 
 	var attempts = 0
+	var any_corrupted = false
 
 	while used_positions.size() < NUM_PIECES and attempts < 100:
 		attempts += 1
@@ -75,12 +78,19 @@ func generate_random_board():
 
 			if randf() < CORRUPTION_CHANCE:
 				corrupt_piece(piece)
+				if piece.get_meta("corrupted", false):
+					any_corrupted = true
 			else:
 				piece.allowed_dirs = get_default_dirs(piece_name)
 				piece.set_original_dirs()
 				piece.mark_corrupted(false)
 
 			piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))
+
+	# If no pieces got corrupted, forcibly corrupt one random piece
+	if not any_corrupted and get_child_count() > 0:
+		var piece_to_corrupt = get_child(randi() % get_child_count())
+		corrupt_piece(piece_to_corrupt)
 
 func corrupt_piece(piece):
 	piece.allowed_dirs = get_default_dirs(piece.name)
@@ -170,6 +180,8 @@ func check_win_condition() -> bool:
 		print("✅ WIN CONDITION MET!")
 		win_shown = true
 		win_panel.visible = true
+		reset_button.disabled = true
+		home_button.disabled = true
 
 	return corrupted_count == 0
 

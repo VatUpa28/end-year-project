@@ -32,6 +32,15 @@ text = "Level 2"
 layout_mode = 2
 text = "Level 3"
 
+[node name="Home" type="Button" parent="LevelSelector"]
+offset_left = 450.0
+offset_top = 60.0
+offset_right = 505.0
+offset_bottom = 91.0
+scale = Vector2(4, 4)
+text = "Home"
+
 [connection signal="pressed" from="LevelSelector/HBoxContainer/Level1Selector" to="LevelSelector" method="_on_level_1_selector_pressed"]
 [connection signal="pressed" from="LevelSelector/HBoxContainer/Level2Selector" to="LevelSelector" method="_on_level_2_selector_pressed"]
 [connection signal="pressed" from="LevelSelector/HBoxContainer/Level3Selector" to="LevelSelector" method="_on_level_3_selector_pressed"]
+[connection signal="pressed" from="LevelSelector/Home" to="LevelSelector" method="_on_home_pressed"]
