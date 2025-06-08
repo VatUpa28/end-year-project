@@ -23,12 +23,11 @@ const NUM_PIECES = 12 # why is num pieces 12?
 const CORRUPTION_CHANCE = 0.3
 
 var selected_piece = null
-@onready var level_timer = $LevelTimer
 
 func _ready():
 	randomize()
 	generate_random_board()
-	level_timer.start()
+
 
 func generate_random_board():
 	# Remove old pieces

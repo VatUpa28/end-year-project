@@ -13,3 +13,7 @@ config_version=5
 config/name="End Year Project"
 run/main_scene="uid://bynvvlradf21x"
 config/features=PackedStringArray("4.4", "Mobile")
+
+[autoload]
+
+GlobalAutoload="*res://globalAutoload.gd"

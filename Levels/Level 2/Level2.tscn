@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://ddiyyuqnkdsr5"]
+[gd_scene load_steps=10 format=4 uid="uid://ddiyyuqnkdsr5"]
 
 [ext_resource type="Script" uid="uid://hddk0213e151" path="res://Levels/Level 2/level_2.gd" id="1_aat58"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_aat58"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_n5uh2"]
 [ext_resource type="Script" uid="uid://dtlfyxn0gwd0h" path="res://Levels/Level 2/logic_panel.gd" id="4_o4rnw"]
+[ext_resource type="Script" uid="uid://b3t3pbevweo56" path="res://Levels/Level 2/code_1.gd" id="5_n5uh2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2prh"]
 texture = ExtResource("2_aat58")
@@ -65,6 +66,8 @@ texture = ExtResource("3_n5uh2")
 sources/0 = SubResource("TileSetAtlasSource_w2prh")
 sources/1 = SubResource("TileSetAtlasSource_yfybp")
 
+[sub_resource type="FontVariation" id="FontVariation_n5uh2"]
+
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_aat58")
 
@@ -94,50 +97,52 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -559.0
-offset_top = -269.0
-offset_right = -459.0
-offset_bottom = -169.0
+offset_left = -560.0
+offset_top = -265.0
+offset_right = -425.0
+offset_bottom = -110.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.00182382
-scale = Vector2(2.5, 2.5)
+scale = Vector2(1.8, 1.8)
 script = ExtResource("4_o4rnw")
 
 [node name="ApplyButton" type="Button" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_right = 52.0
-offset_bottom = 31.0
+offset_left = 111.67
+offset_top = 1.463
+offset_right = 163.67
+offset_bottom = 32.463
 rotation = 0.0248209
-scale = Vector2(0.2, 0.2)
+scale = Vector2(0.4, 0.4)
 text = "Apply"
 
 [node name="ColorRect" type="ColorRect" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = -5.75
-offset_top = -20.008
-offset_right = 106.25
-offset_bottom = -0.00797844
+offset_left = 9.96452
+offset_top = -19.4627
+offset_right = 121.965
+offset_bottom = 0.537371
 rotation = -0.00714684
 color = Color(0, 0, 0, 0.784314)
 
 [node name="Label" type="Label" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = -5.75
-offset_top = -19.991
-offset_right = 143.25
-offset_bottom = 3.009
+offset_left = 9.0
+offset_top = -18.0
+offset_right = 158.0
+offset_bottom = 7.0
 rotation = -0.00444009
 scale = Vector2(0.75, 0.75)
 text = "Movement Options"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = 30.0
-offset_top = 2.0
-offset_right = 143.0
-offset_bottom = 278.0
-scale = Vector2(0.35, 0.35)
+offset_left = 62.0
+offset_top = 16.0
+offset_right = 177.0
+offset_bottom = 292.0
+scale = Vector2(0.5, 0.5)
 
 [node name="LineEditUp" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
@@ -165,52 +170,72 @@ layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="UI/LogicPanel"]
 layout_mode = 2
-offset_left = 30.0
-offset_top = 104.2
-offset_right = 143.0
-offset_bottom = 392.2
+offset_left = 1.10706
+offset_top = -2.22425
+offset_right = 63.1071
+offset_bottom = 140.776
+scale = Vector2(1.1, 1.1)
 
 [node name="Code1" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_n5uh2")
+theme_override_font_sizes/font_size = 8
 text = "allowed_dirs = {"
+script = ExtResource("5_n5uh2")
 
 [node name="Code2" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "	\"up\" : "
 
 [node name="Code3" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "	\"down\" : "
 
 [node name="Code4" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "	\"left\" : "
 
 [node name="Code5" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "	\"right\" : "
 
 [node name="Code6" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "	\"up-left\" : "
 
 [node name="Code7" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "	\"up-right\" : "
 
 [node name="Code8" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "	\"down-left\" : "
 
 [node name="Code9" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "	\"down-right\" : "
 
+[node name="Code9" type="Label" parent="UI/LogicPanel/VBoxContainer2/Code9"]
+offset_left = 113.364
+offset_top = -0.428764
+offset_right = 169.364
+offset_bottom = 11.5712
+theme_override_font_sizes/font_size = 8
+text = "}"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
-offset_left = 925.0
-offset_top = 50.0
-offset_right = 1039.0
-offset_bottom = 90.0
+offset_left = 901.0
+offset_top = 529.0
+offset_right = 1025.0
+offset_bottom = 569.0
 scale = Vector2(1.5, 1.5)
 
 [node name="Restart" type="Button" parent="UI/HBoxContainer"]
