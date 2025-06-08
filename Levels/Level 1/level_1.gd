@@ -16,8 +16,8 @@ extends Node2D
 ]
 
 @onready var board = $Board
-@onready var logic_panel = $UI/LogicPanel
-@onready var win_panel = $UI/WinPanel  # Panel to display win message
+@onready var logic_panel := $UI/LogicPanel
+@onready var win_panel := $UI/WinPanel
 
 const GRID_SIZE = 8
 const NUM_PIECES = 12
@@ -28,11 +28,12 @@ var win_shown = false
 
 func _ready():
 	randomize()
+	logic_panel.level_node = self
 	generate_random_board()
 
 func generate_random_board():
 	for child in get_children():
-		if child is Area2D:
+		if child is Area2D and child.has_method("mark_corrupted"):
 			child.queue_free()
 
 	var used_positions: Array = []
@@ -48,13 +49,12 @@ func generate_random_board():
 	for name in max_piece_counts.keys():
 		current_piece_counts[name] = 0
 
-	var available_pieces = piece_scenes.duplicate()
 	var attempts = 0
 
 	while used_positions.size() < NUM_PIECES and attempts < 100:
 		attempts += 1
 
-		var piece_scene = available_pieces[randi() % available_pieces.size()]
+		var piece_scene = piece_scenes[randi() % piece_scenes.size()]
 		var scene_path = piece_scene.resource_path
 		var piece_name = scene_path.get_file().get_basename()
 
@@ -62,6 +62,8 @@ func generate_random_board():
 			current_piece_counts[piece_name] += 1
 
 			var piece = piece_scene.instantiate()
+			piece.name = piece_name + str(used_positions.size())
+
 			var cell = get_random_grid_position(used_positions)
 			used_positions.append(cell)
 
@@ -73,22 +75,75 @@ func generate_random_board():
 
 			if randf() < CORRUPTION_CHANCE:
 				corrupt_piece(piece)
+			else:
+				piece.allowed_dirs = get_default_dirs(piece_name)
+				piece.set_original_dirs()
+				piece.mark_corrupted(false)
 
 			piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))
 
+func corrupt_piece(piece):
+	piece.allowed_dirs = get_default_dirs(piece.name)
+	piece.set_original_dirs()
+
+	var dirs = piece.allowed_dirs.keys()
+	dirs.shuffle()
+	var corrupt_count = randi() % 2 + 1
+	for i in range(corrupt_count):
+		piece.allowed_dirs[dirs[i]] = false
+
+	# Now check if corrupted
+	if not piece.is_directions_correct():
+		piece.mark_corrupted(true)
+	else:
+		piece.mark_corrupted(false)
+
+
+func get_default_dirs(piece_name: String) -> Dictionary:
+	var dirs := {
+		"up": false, "down": false, "left": false, "right": false,
+		"up_left": false, "up_right": false, "down_left": false, "down_right": false
+	}
+
+	if piece_name.contains("pawn"):
+		dirs["up"] = true
+		dirs["up_left"] = true
+		dirs["up_right"] = true
+	elif piece_name.contains("rook"):
+		dirs["up"] = true
+		dirs["down"] = true
+		dirs["left"] = true
+		dirs["right"] = true
+	elif piece_name.contains("bishop"):
+		dirs["up_left"] = true
+		dirs["up_right"] = true
+		dirs["down_left"] = true
+		dirs["down_right"] = true
+	elif piece_name.contains("queen"):
+		for dir in dirs.keys():
+			dirs[dir] = true
+	elif piece_name.contains("king"):
+		for dir in dirs.keys():
+			dirs[dir] = true
+	elif piece_name.contains("knight"):
+		# Knights move in L-shapes; not handled by this system
+		pass
+
+	return dirs
+
 func on_piece_clicked(piece):
 	if selected_piece and selected_piece != piece:
-		selected_piece.set_highlight(false)
+		selected_piece.set_selected(false)
 		selected_piece = piece
-		selected_piece.set_highlight(true)
+		selected_piece.set_selected(true)
 		logic_panel.update_with_piece(piece)
 	elif selected_piece == piece:
-		selected_piece.set_highlight(false)
+		selected_piece.set_selected(false)
 		selected_piece = null
 		logic_panel.visible = false
 	else:
 		selected_piece = piece
-		selected_piece.set_highlight(true)
+		selected_piece.set_selected(true)
 		logic_panel.update_with_piece(piece)
 
 func get_random_grid_position(used: Array) -> Vector2i:
@@ -100,30 +155,41 @@ func get_random_grid_position(used: Array) -> Vector2i:
 			return cell
 	return Vector2i(0, 0)
 
-func corrupt_piece(piece):
-	var dirs = ["up", "down", "left", "right", "up_left", "up_right", "down_left", "down_right"]
-	dirs.shuffle()
-	var corrupt_count = randi() % 2 + 1
-	for i in range(corrupt_count):
-		piece.allowed_dirs[dirs[i]] = false
+func check_win_condition() -> bool:
+	var corrupted_count = 0
+	for child in get_children():
+		if child is Area2D and child.has_method("mark_corrupted"):
+			var is_corrupted = child.get_meta("corrupted", false)
+			print("🔍", child.name, "corrupted:", is_corrupted)
+			if is_corrupted:
+				corrupted_count += 1
 
-	if piece.has_method("mark_corrupted"):
-		piece.mark_corrupted()
-		piece.set_meta("corrupted", true)
+	print("⏳", corrupted_count, "corrupted pieces remain.")
+
+	if corrupted_count == 0 and not win_shown:
+		print("✅ WIN CONDITION MET!")
+		win_shown = true
+		win_panel.visible = true
+
+	return corrupted_count == 0
+
+func on_piece_fixed():
+	check_win_condition()
 
 func _on_restart_pressed() -> void:
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://Levels/Level 1/Level1.tscn")
 
 func _on_home_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main/MainMenu/MainMenu.tscn")
 
-func check_win_condition() -> bool:
-	for child in get_children():
-		if child is Area2D and child.get_meta("corrupted", false) == true:
-			return false
-	return true
+func _on_home_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Main/MainMenu/MainMenu.tscn")
 
-func _process(_delta):
-	if not win_shown and check_win_condition():
-		win_shown = true
-		win_panel.visible = true
+func _on_level_selector_pressed() -> void:
+	get_tree().change_scene_to_file("res://Main/LevelSelector/LevelSelector.tscn")
+
+func _on_next_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Levels/Level 2/Level2.tscn")
+
+func _on_retry_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://Levels/Level 1/Level1.tscn")

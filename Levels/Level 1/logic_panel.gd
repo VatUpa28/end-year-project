@@ -1,6 +1,7 @@
 extends Control
 
 var current_piece = null
+var level_node = null
 
 @onready var cb_up = $VBoxContainer/CheckBoxUp
 @onready var cb_down = $VBoxContainer/CheckBoxDown
@@ -13,49 +14,80 @@ var current_piece = null
 @onready var apply_button = $ApplyButton
 
 func _ready():
-	randomize()  # Ensure randomness works
-	apply_button.pressed.connect(Callable(self, "_on_ApplyButton_pressed"))
-	visible = false  # Hide panel initially
+	if apply_button:
+		apply_button.pressed.connect(_on_ApplyButton_pressed)
+	visible = false
 
 func update_with_piece(piece):
 	current_piece = piece
 	visible = true
 
-	if piece.name.to_lower().find("knight") != -1 and piece.is_corrupted:
-		var dirs = ["up", "down", "left", "right", "up_left", "up_right", "down_left", "down_right"]
-		dirs.shuffle()
+	print("🧠 LogicPanel: updating piece ", piece.name)
 
-		var corrupt_count = randi() % 4 + 2  # corrupt 2 to 5 directions
+	var directions = {
+		"up": cb_up,
+		"down": cb_down,
+		"left": cb_left,
+		"right": cb_right,
+		"up_left": cb_upleft,
+		"up_right": cb_upright,
+		"down_left": cb_downleft,
+		"down_right": cb_downright
+	}
 
-		# Start all directions as allowed
-		for dir in dirs:
-			piece.allowed_dirs[dir] = true
+	# Ensure all directions exist
+	for dir in directions.keys():
+		if not piece.allowed_dirs.has(dir):
+			piece.allowed_dirs[dir] = true  # Default to true if not present
 
-		# Corrupt random directions
-		for i in range(corrupt_count):
-			piece.allowed_dirs[dirs[i]] = false
+		var val = piece.allowed_dirs.get(dir, true)
+		var checkbox = directions[dir]
 
-	# Set checkboxes to reflect allowed_dirs
-	cb_up.set_pressed(piece.allowed_dirs.get("up", false))
-	cb_down.set_pressed(piece.allowed_dirs.get("down", false))
-	cb_left.set_pressed(piece.allowed_dirs.get("left", false))
-	cb_right.set_pressed(piece.allowed_dirs.get("right", false))
-	cb_upleft.set_pressed(piece.allowed_dirs.get("up_left", false))
-	cb_upright.set_pressed(piece.allowed_dirs.get("up_right", false))
-	cb_downleft.set_pressed(piece.allowed_dirs.get("down_left", false))
-	cb_downright.set_pressed(piece.allowed_dirs.get("down_right", false))
+		if checkbox == null:
+			print("❌ ERROR: Checkbox for", dir, "is null")
+			continue
+
+		if typeof(checkbox) != TYPE_OBJECT or not checkbox is CheckBox:
+			print("❌ ERROR: Node for", dir, "is not a CheckBox! Got:", typeof(checkbox))
+			continue
+
+		if typeof(val) != TYPE_BOOL:
+			print("❌ ERROR: Value for", dir, "is NOT a bool! Got:", typeof(val), " Value:", val)
+			val = true  # default/fallback
+
+		checkbox.set_pressed(val)
 
 func _on_ApplyButton_pressed():
-	if current_piece:
-		current_piece.allowed_dirs["up"] = cb_up.is_pressed()
-		current_piece.allowed_dirs["down"] = cb_down.is_pressed()
-		current_piece.allowed_dirs["left"] = cb_left.is_pressed()
-		current_piece.allowed_dirs["right"] = cb_right.is_pressed()
-		current_piece.allowed_dirs["up_left"] = cb_upleft.is_pressed()
-		current_piece.allowed_dirs["up_right"] = cb_upright.is_pressed()
-		current_piece.allowed_dirs["down_left"] = cb_downleft.is_pressed()
-		current_piece.allowed_dirs["down_right"] = cb_downright.is_pressed()
+	if current_piece == null:
+		print("⚠️ Apply pressed but no current piece selected")
+		return
 
-		current_piece.set_highlight(false)
-		current_piece = null
-		visible = false
+	current_piece.allowed_dirs["up"] = cb_up.is_pressed()
+	current_piece.allowed_dirs["down"] = cb_down.is_pressed()
+	current_piece.allowed_dirs["left"] = cb_left.is_pressed()
+	current_piece.allowed_dirs["right"] = cb_right.is_pressed()
+	current_piece.allowed_dirs["up_left"] = cb_upleft.is_pressed()
+	current_piece.allowed_dirs["up_right"] = cb_upright.is_pressed()
+	current_piece.allowed_dirs["down_left"] = cb_downleft.is_pressed()
+	current_piece.allowed_dirs["down_right"] = cb_downright.is_pressed()
+
+	# 🔍 Compare allowed_dirs to original_dirs
+	var corrupted = false
+	for dir in current_piece.allowed_dirs.keys():
+		if current_piece.allowed_dirs[dir] != current_piece.original_dirs.get(dir, true):
+			corrupted = true
+			break
+
+	current_piece.mark_corrupted(corrupted)
+	current_piece.set_meta("corrupted", corrupted)
+
+	print("✅ Applied changes to piece ", current_piece.name, "| Corrupted:", corrupted)
+
+	if level_node != null:
+		level_node.on_piece_fixed()
+	else:
+		print("❌ ERROR: Could not find Level1 node to check win condition")
+
+	visible = false
+	current_piece.set_selected(false)
+	current_piece = null
