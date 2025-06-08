@@ -1,5 +1,4 @@
 [gd_scene load_steps=10 format=4 uid="uid://ddiyyuqnkdsr5"]
-[gd_scene load_steps=9 format=4 uid="uid://ddiyyuqnkdsr5"]
 
 [ext_resource type="Script" uid="uid://hddk0213e151" path="res://Levels/Level 2/level_2.gd" id="1_aat58"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_aat58"]
@@ -226,8 +225,7 @@ text = "	\"down-left\" : "
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "	\"down-right\" : "
-text = "fgbnhgfg
-"
+
 editable = false
 
 [node name="Code9" type="Label" parent="UI/LogicPanel/VBoxContainer2/Code9"]
