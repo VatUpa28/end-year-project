@@ -177,7 +177,7 @@ func on_piece_fixed():
 	check_win_condition()
 
 func _on_restart_pressed() -> void:
-	get_tree().change_scene_to_file("res://Levels/Level 1/Level1.tscn")
+	get_tree().reload_current_scene()
 
 func _on_home_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main/MainMenu/MainMenu.tscn")
@@ -192,4 +192,4 @@ func _on_next_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://Levels/Level 2/Level2.tscn")
 
 func _on_retry_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://Levels/Level 1/Level1.tscn")
+	get_tree().reload_current_scene()

@@ -67,7 +67,7 @@ func _on_ApplyButton_pressed():
 		current_piece.allowed_dirs["down_left"] = parse_bool(le_downleft.text)
 		current_piece.allowed_dirs["down_right"] = parse_bool(le_downright.text)
 
-		current_piece.set_highlight(false)
+		current_piece.set_selected(false)
 		current_piece = null
 		visible = false
 

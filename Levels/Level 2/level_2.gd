@@ -19,7 +19,7 @@ extends Node2D
 @onready var logic_panel = $UI/LogicPanel
 
 const GRID_SIZE = 8
-const NUM_PIECES = 12 # why is num pieces 12?
+const NUM_PIECES = 12
 const CORRUPTION_CHANCE = 0.3
 
 var selected_piece = null
@@ -27,7 +27,6 @@ var selected_piece = null
 func _ready():
 	randomize()
 	generate_random_board()
-
 
 func generate_random_board():
 	# Remove old pieces
@@ -74,29 +73,28 @@ func generate_random_board():
 			"pawn" : 0
 		}
 	}
+	
 	var available_pieces = piece_scenes.duplicate()
 	
-	var attempts=0
-	while used_positions.size()<NUM_PIECES and attempts<1000: # needed mroe attempts, otherwise only added 6-7 pieces to the chess board
-		attempts+=1
-	
-		for i in range(NUM_PIECES):
-			attempts += 1
+	var attempts = 0
+	while used_positions.size() < NUM_PIECES and attempts < 1000:
+		attempts += 1
 
 		var piece_scene = available_pieces[randi() % available_pieces.size()]
 		var scene_path = piece_scene.resource_path
-		var piece_name = scene_path.get_file().get_basename()  # like "white-rook"
+		var piece_name = scene_path.get_file().get_basename()  # e.g. "white-rook"
 		
 		var parts = piece_name.split("-")
-		if parts.size()<2:
+		if parts.size() < 2:
 			continue
+		
 		var color = parts[0]
 		var piece_type = parts[1] 
 		
 		if current_piece_counts[color][piece_type] < MAX_PIECES[color][piece_type]:
 			current_piece_counts[color][piece_type] += 1
 
-			var piece = piece_scene.instantiate() 
+			var piece = piece_scene.instantiate()
 
 			var cell = get_random_grid_position(used_positions)
 			used_positions.append(cell)
@@ -107,24 +105,24 @@ func generate_random_board():
 			add_child(piece)
 			piece.global_position = world_pos
 
-			if randf() < CORRUPTION_CHANCE:
-				corrupt_piece(piece)
+			# For level 2, do NOT corrupt or highlight in red.
+			# So, skip corrupt_piece(piece) here
 
-			piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))  # <--- USE IT INSIDE THE BLOCK
+			piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))
 
 func on_piece_clicked(piece):
 	if selected_piece and selected_piece != piece:
-		selected_piece.set_highlight(false)
+		selected_piece.set_selected(false)
 		selected_piece = piece
-		selected_piece.set_highlight(true)
+		selected_piece.set_selected(true)
 		logic_panel.update_with_piece(piece)
 	elif selected_piece == piece:
-		selected_piece.set_highlight(false)
+		selected_piece.set_selected(false)
 		selected_piece = null
 		logic_panel.visible = false
 	else:
 		selected_piece = piece
-		selected_piece.set_highlight(true)
+		selected_piece.set_selected(true)
 		logic_panel.update_with_piece(piece)
 
 func get_random_grid_position(used: Array) -> Vector2i:
@@ -136,15 +134,7 @@ func get_random_grid_position(used: Array) -> Vector2i:
 			return cell
 	return Vector2i(0, 0)
 
-func corrupt_piece(piece):
-	var dirs = ["up", "down", "left", "right", "up_left", "up_right", "down_left", "down_right"]
-	dirs.shuffle()
-	var corrupt_count = randi() % 2 + 1
-	for i in range(corrupt_count):
-		piece.allowed_dirs[dirs[i]] = false
-	if piece.has_method("mark_corrupted"):
-		piece.mark_corrupted()
-
+# No corrupt_piece function call since pieces aren't corrupted in this level
 
 func _on_restart_pressed() -> void:
 	get_tree().reload_current_scene()

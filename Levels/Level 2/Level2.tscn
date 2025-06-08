@@ -4,8 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_aat58"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_n5uh2"]
 [ext_resource type="Script" uid="uid://dtlfyxn0gwd0h" path="res://Levels/Level 2/logic_panel.gd" id="4_o4rnw"]
-[ext_resource type="Script" uid="uid://b3t3pbevweo56" path="res://Levels/Level 2/code_1.gd" id="5_n5uh2"]
-[ext_resource type="Script" uid="uid://7ixnhpsbsr4m" path="res://Levels/Level 2/timer_display_label.gd" id="5_n5uh2"]
+[ext_resource type="Script" path="res://Levels/Level 2/timer_display_label.gd" id="5_n5uh2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2prh"]
 texture = ExtResource("2_aat58")
@@ -112,8 +111,6 @@ script = ExtResource("4_o4rnw")
 layout_mode = 0
 offset_left = 111.67
 offset_top = 1.463
-offset_right = 163.67
-offset_bottom = 32.463
 offset_right = 74.0
 offset_bottom = 49.0
 rotation = 0.0248209
@@ -173,68 +170,6 @@ layout_mode = 2
 
 [node name="CodeDisplay" type="TextEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
-offset_left = 1.10706
-offset_top = -2.22425
-offset_right = 63.1071
-offset_bottom = 140.776
-scale = Vector2(1.1, 1.1)
-
-[node name="Code1" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-theme_override_fonts/font = SubResource("FontVariation_n5uh2")
-theme_override_font_sizes/font_size = 8
-text = "allowed_dirs = {"
-script = ExtResource("5_n5uh2")
-
-[node name="Code2" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "	\"up\" : "
-
-[node name="Code3" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "	\"down\" : "
-
-[node name="Code4" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "	\"left\" : "
-
-[node name="Code5" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "	\"right\" : "
-
-[node name="Code6" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "	\"up-left\" : "
-
-[node name="Code7" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "	\"up-right\" : "
-
-[node name="Code8" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "	\"down-left\" : "
-
-[node name="Code9" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "	\"down-right\" : "
-
-editable = false
-
-[node name="Code9" type="Label" parent="UI/LogicPanel/VBoxContainer2/Code9"]
-offset_left = 113.364
-offset_top = -0.428764
-offset_right = 169.364
-offset_bottom = 11.5712
-theme_override_font_sizes/font_size = 8
-text = "}"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 offset_left = 901.0
@@ -250,6 +185,52 @@ text = "Restart"
 [node name="Home" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
 text = "Home"
+
+[node name="UI_LogicPanel_VBoxContainer2#Code1" type="Label" parent="."]
+theme_override_fonts/font = SubResource("FontVariation_n5uh2")
+theme_override_font_sizes/font_size = 8
+text = "allowed_dirs = {"
+script = ExtResource("5_n5uh2")
+
+[node name="UI_LogicPanel_VBoxContainer2#Code2" type="Label" parent="."]
+theme_override_font_sizes/font_size = 8
+text = "	\"up\" : "
+
+[node name="UI_LogicPanel_VBoxContainer2#Code3" type="Label" parent="."]
+theme_override_font_sizes/font_size = 8
+text = "	\"down\" : "
+
+[node name="UI_LogicPanel_VBoxContainer2#Code4" type="Label" parent="."]
+theme_override_font_sizes/font_size = 8
+text = "	\"left\" : "
+
+[node name="UI_LogicPanel_VBoxContainer2#Code5" type="Label" parent="."]
+theme_override_font_sizes/font_size = 8
+text = "	\"right\" : "
+
+[node name="UI_LogicPanel_VBoxContainer2#Code6" type="Label" parent="."]
+theme_override_font_sizes/font_size = 8
+text = "	\"up-left\" : "
+
+[node name="UI_LogicPanel_VBoxContainer2#Code7" type="Label" parent="."]
+theme_override_font_sizes/font_size = 8
+text = "	\"up-right\" : "
+
+[node name="UI_LogicPanel_VBoxContainer2#Code8" type="Label" parent="."]
+theme_override_font_sizes/font_size = 8
+text = "	\"down-left\" : "
+
+[node name="UI_LogicPanel_VBoxContainer2#Code9" type="Label" parent="."]
+theme_override_font_sizes/font_size = 8
+text = "	\"down-right\" : "
+
+[node name="UI_LogicPanel_VBoxContainer2_Code9#Code9" type="Label" parent="."]
+offset_left = 113.364
+offset_top = -0.428764
+offset_right = 169.364
+offset_bottom = 11.5712
+theme_override_font_sizes/font_size = 8
+text = "}"
 
 [node name="LevelTimer" type="Timer" parent="."]
 wait_time = 60.0
