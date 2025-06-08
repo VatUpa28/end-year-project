@@ -11,6 +11,7 @@ func _init():
 		"down_left": true,
 		"down_right": true
 	}
-	
+	set_original_dirs()
+
 func get_allowed_dirs() -> Dictionary:
 	return allowed_dirs.duplicate()

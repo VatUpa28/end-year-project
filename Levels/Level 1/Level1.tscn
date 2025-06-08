@@ -106,15 +106,19 @@ text = "You Win!
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/WinPanel"]
 layout_mode = 0
-offset_left = 131.0
+offset_left = 75.0
 offset_top = 193.0
-offset_right = 290.0
+offset_right = 293.0
 offset_bottom = 251.0
 scale = Vector2(2.5, 2.5)
 
 [node name="HomeButton" type="Button" parent="UI/WinPanel/HBoxContainer"]
 layout_mode = 2
 text = "Home"
+
+[node name="Level Selector" type="Button" parent="UI/WinPanel/HBoxContainer"]
+layout_mode = 2
+text = "Levels"
 
 [node name="NextButton" type="Button" parent="UI/WinPanel/HBoxContainer"]
 layout_mode = 2
@@ -226,6 +230,10 @@ text = "Restart"
 layout_mode = 2
 text = "Home"
 
+[connection signal="pressed" from="UI/WinPanel/HBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="UI/WinPanel/HBoxContainer/Level Selector" to="." method="_on_level_selector_pressed"]
+[connection signal="pressed" from="UI/WinPanel/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="UI/WinPanel/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="UI/LogicPanel/ApplyButton" to="UI/LogicPanel" method="_on_ApplyButton_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/Home" to="." method="_on_home_pressed"]
