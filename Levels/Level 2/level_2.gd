@@ -20,7 +20,7 @@ extends Node2D
 
 const GRID_SIZE = 8
 const NUM_PIECES = 12
-const CORRUPTION_CHANCE = 0.3
+const CORRUPTION_CHANCE = 0.4
 
 var selected_piece = null
 

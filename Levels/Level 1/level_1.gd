@@ -23,7 +23,7 @@ extends Node2D
 
 const GRID_SIZE = 8
 const NUM_PIECES = 12
-const CORRUPTION_CHANCE = 0.3
+const CORRUPTION_CHANCE = 0.35
 
 var selected_piece = null
 var win_shown = false
@@ -52,7 +52,8 @@ func generate_random_board():
 		current_piece_counts[name] = 0
 
 	var attempts = 0
-	var any_corrupted = false
+	var corrupted_pieces: Array = []
+	var all_pieces: Array = []
 
 	while used_positions.size() < NUM_PIECES and attempts < 100:
 		attempts += 1
@@ -76,21 +77,27 @@ func generate_random_board():
 			add_child(piece)
 			piece.global_position = world_pos
 
+			piece.allowed_dirs = get_default_dirs(piece_name)
+			piece.set_original_dirs()
+
 			if randf() < CORRUPTION_CHANCE:
 				corrupt_piece(piece)
 				if piece.get_meta("corrupted", false):
-					any_corrupted = true
+					corrupted_pieces.append(piece)
 			else:
-				piece.allowed_dirs = get_default_dirs(piece_name)
-				piece.set_original_dirs()
 				piece.mark_corrupted(false)
 
 			piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))
+			all_pieces.append(piece)
 
-	# If no pieces got corrupted, forcibly corrupt one random piece
-	if not any_corrupted and get_child_count() > 0:
-		var piece_to_corrupt = get_child(randi() % get_child_count())
-		corrupt_piece(piece_to_corrupt)
+	# Force at least 2 corrupted pieces
+	while corrupted_pieces.size() < 2 and all_pieces.size() > 0:
+		var candidate = all_pieces[randi() % all_pieces.size()]
+		if not candidate.get_meta("corrupted", false):
+			corrupt_piece(candidate)
+			if candidate.get_meta("corrupted", false):
+				corrupted_pieces.append(candidate)
+
 
 func corrupt_piece(piece):
 	piece.allowed_dirs = get_default_dirs(piece.name)

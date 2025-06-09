@@ -40,6 +40,9 @@ offset_bottom = 91.0
 scale = Vector2(4, 4)
 text = "Home"
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 324)
+
 [connection signal="pressed" from="LevelSelector/HBoxContainer/Level1Selector" to="LevelSelector" method="_on_level_1_selector_pressed"]
 [connection signal="pressed" from="LevelSelector/HBoxContainer/Level2Selector" to="LevelSelector" method="_on_level_2_selector_pressed"]
 [connection signal="pressed" from="LevelSelector/HBoxContainer/Level3Selector" to="LevelSelector" method="_on_level_3_selector_pressed"]

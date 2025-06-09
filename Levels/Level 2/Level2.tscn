@@ -112,7 +112,6 @@ offset_left = 111.67
 offset_top = 1.463
 offset_right = 74.0
 offset_bottom = 49.0
-rotation = 0.0248209
 scale = Vector2(0.4, 0.4)
 text = "Apply"
 
@@ -120,16 +119,16 @@ text = "Apply"
 layout_mode = 0
 offset_left = 9.96452
 offset_top = -19.4627
-offset_right = 121.965
-offset_bottom = 0.537371
+offset_right = 124.965
+offset_bottom = 0.5373
 rotation = -0.00714684
 color = Color(0, 0, 0, 0.784314)
 
 [node name="Label" type="Label" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = 9.0
+offset_left = 11.5
 offset_top = -18.0
-offset_right = 158.0
+offset_right = 160.5
 offset_bottom = 7.0
 rotation = -0.00444009
 scale = Vector2(0.75, 0.75)
