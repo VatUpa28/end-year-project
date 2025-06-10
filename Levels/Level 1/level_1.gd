@@ -189,6 +189,7 @@ func check_win_condition() -> bool:
 		win_panel.visible = true
 		reset_button.disabled = true
 		home_button.disabled = true
+		$Party.play()
 
 	return corrupted_count == 0
 
@@ -196,19 +197,31 @@ func on_piece_fixed():
 	check_win_condition()
 
 func _on_restart_pressed() -> void:
+	$Tap.play()
+	await get_tree().create_timer(0.075).timeout
 	get_tree().reload_current_scene()
 
 func _on_home_pressed() -> void:
+	$Tap.play()
+	await get_tree().create_timer(0.075).timeout
 	get_tree().change_scene_to_file("res://Main/MainMenu/MainMenu.tscn")
 
 func _on_home_button_pressed() -> void:
+	$Tap.play()
+	await get_tree().create_timer(0.075).timeout
 	get_tree().change_scene_to_file("res://Main/MainMenu/MainMenu.tscn")
 
 func _on_level_selector_pressed() -> void:
+	$Tap.play()
+	await get_tree().create_timer(0.075).timeout
 	get_tree().change_scene_to_file("res://Main/LevelSelector/LevelSelector.tscn")
 
 func _on_next_button_pressed() -> void:
+	$Tap.play()
+	await get_tree().create_timer(0.075).timeout
 	get_tree().change_scene_to_file("res://Levels/Level 2/Level2.tscn")
 
 func _on_retry_button_pressed() -> void:
+	$Tap.play()
+	await get_tree().create_timer(0.075).timeout
 	get_tree().reload_current_scene()

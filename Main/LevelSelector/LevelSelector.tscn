@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bhx0kpy5qy6xm"]
+[gd_scene load_steps=3 format=3 uid="uid://bhx0kpy5qy6xm"]
 
 [ext_resource type="Script" uid="uid://csdev6jcyd55b" path="res://Main/LevelSelector/level_selector.gd" id="1_m4s1d"]
+[ext_resource type="AudioStream" uid="uid://bgel8gn0ucl60" path="res://Audio/tap.wav" id="2_rf4sk"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -39,6 +40,12 @@ offset_right = 505.0
 offset_bottom = 91.0
 scale = Vector2(4, 4)
 text = "Home"
+
+[node name="Tap" type="AudioStreamPlayer2D" parent="LevelSelector"]
+position = Vector2(-83.3333, -66.6667)
+scale = Vector2(0.333333, 0.333333)
+stream = ExtResource("2_rf4sk")
+volume_db = 24.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(576, 324)

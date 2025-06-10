@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://ddiyyuqnkdsr5"]
+[gd_scene load_steps=10 format=4 uid="uid://ddiyyuqnkdsr5"]
 
 [ext_resource type="Script" uid="uid://hddk0213e151" path="res://Levels/Level 2/level_2.gd" id="1_aat58"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_aat58"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_n5uh2"]
 [ext_resource type="Script" uid="uid://dtlfyxn0gwd0h" path="res://Levels/Level 2/logic_panel.gd" id="4_o4rnw"]
+[ext_resource type="Script" uid="uid://wsnjxtk4ih02" path="res://Levels/win_lose_panel.gd" id="6_yfybp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w2prh"]
 texture = ExtResource("2_aat58")
@@ -70,6 +71,10 @@ sources/1 = SubResource("TileSetAtlasSource_yfybp")
 [node name="Level2" type="Node2D"]
 script = ExtResource("1_aat58")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(66.5, 65.5)
+scale = Vector2(0.169922, 0.145508)
+
 [node name="Board" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_atwlb")
 rendering_quadrant_size = 8
@@ -81,11 +86,65 @@ position = Vector2(64, 64)
 tile_map_data = PackedByteArray("AAAAAAAAAAAEAAIAAAD/////AAAEAAIAAAD8//z/AAAEAAIAAAD9//3/AAAEAAIAAAD+//7/AAAEAAIAAAABAAEAAAAEAAIAAAACAAIAAAAEAAIAAAADAAMAAAAEAAIAAAABAP//AAAEAAIAAAACAP7/AAAEAAIAAAADAP3/AAAEAAIAAAACAPz/AAAEAAIAAAAAAPz/AAAEAAIAAAD+//z/AAAEAAIAAAD8//7/AAAEAAIAAAD8/wAAAAAEAAIAAAD8/wIAAAAEAAIAAAD9/wMAAAAEAAIAAAD//wMAAAAEAAIAAAABAAMAAAAEAAIAAAAAAAIAAAAEAAIAAAD//wEAAAAEAAIAAAD+/wAAAAAEAAIAAAD9////AAAEAAIAAAD9/wEAAAAEAAIAAAD+/wIAAAAEAAIAAAADAP//AAAEAAIAAAACAAAAAAAEAAIAAAAAAP7/AAAEAAIAAAD///3/AAAEAAIAAAABAP3/AAAEAAIAAAACAAMAAQACAAIAAAADAAIAAQACAAIAAAACAAEAAQACAAIAAAABAAAAAQACAAIAAAAAAP//AQACAAIAAAD///7/AQACAAIAAAD+//3/AQACAAIAAAD9//z/AQACAAIAAAD8//3/AQACAAIAAAD9//7/AQACAAIAAAD8////AQACAAIAAAD9/wAAAQACAAIAAAD8/wEAAQACAAIAAAD9/wIAAQACAAIAAAD+/wEAAQACAAIAAAD//wIAAQACAAIAAAD+/wMAAQACAAIAAAAAAAMAAQACAAIAAAABAAIAAQACAAIAAAAAAAEAAQACAAIAAAD//wAAAQACAAIAAAD+////AQACAAIAAAD///z/AQACAAIAAAABAPz/AQACAAIAAAAAAP3/AQACAAIAAAABAP7/AQACAAIAAAACAP3/AQACAAIAAAACAP//AQACAAIAAAADAP7/AQACAAIAAAADAPz/AQACAAIAAAADAAAAAQACAAIAAAD8/wMAAQACAAIAAAADAAEAAAAEAAMAAAA=")
 tile_set = SubResource("TileSet_atwlb")
 
-[node name="CamTopCenterBoard" type="Camera2D" parent="."]
-position = Vector2(64, 64)
-zoom = Vector2(4.5, 4.5)
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.996433, 1)
+
+[node name="GameTimer" type="Timer" parent="Control"]
+
+[node name="TimerLabel" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 143.0
+offset_top = -3.0
+offset_right = 183.0
+offset_bottom = 20.0
 
 [node name="UI" type="CanvasLayer" parent="."]
+
+[node name="WinPanel" type="Panel" parent="UI"]
+visible = false
+offset_left = 236.0
+offset_top = 100.0
+offset_right = 928.0
+offset_bottom = 547.0
+script = ExtResource("6_yfybp")
+
+[node name="WinLabel" type="Label" parent="UI/WinPanel"]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 103.0
+offset_right = 266.0
+offset_bottom = 152.0
+scale = Vector2(4, 4)
+text = "You Win!
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/WinPanel"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 193.0
+offset_right = 293.0
+offset_bottom = 251.0
+scale = Vector2(2.5, 2.5)
+
+[node name="HomeButton" type="Button" parent="UI/WinPanel/HBoxContainer"]
+layout_mode = 2
+text = "Home"
+
+[node name="Level Selector" type="Button" parent="UI/WinPanel/HBoxContainer"]
+layout_mode = 2
+text = "Levels"
+
+[node name="NextButton" type="Button" parent="UI/WinPanel/HBoxContainer"]
+layout_mode = 2
+text = "Next"
+
+[node name="RetryButton" type="Button" parent="UI/WinPanel/HBoxContainer"]
+layout_mode = 2
+text = "Retry"
 
 [node name="LogicPanel" type="Panel" parent="UI"]
 self_modulate = Color(0, 0, 0, 1)
@@ -96,10 +155,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -560.0
-offset_top = -265.0
-offset_right = -425.0
-offset_bottom = -110.0
+offset_left = -559.0
+offset_top = -280.0
+offset_right = -415.0
+offset_bottom = -111.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.00182382
@@ -108,38 +167,38 @@ script = ExtResource("4_o4rnw")
 
 [node name="ApplyButton" type="Button" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = 111.67
-offset_top = 1.463
-offset_right = 74.0
-offset_bottom = 49.0
+offset_left = 114.0
+offset_top = 152.0
+offset_right = 175.0
+offset_bottom = 190.0
+rotation = 0.0248209
 scale = Vector2(0.4, 0.4)
 text = "Apply"
 
 [node name="ColorRect" type="ColorRect" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = 9.96452
-offset_top = -19.4627
-offset_right = 124.965
-offset_bottom = 0.5373
+offset_top = -21.0
+offset_right = 130.0
 rotation = -0.00714684
 color = Color(0, 0, 0, 0.784314)
 
 [node name="Label" type="Label" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = 11.5
-offset_top = -18.0
-offset_right = 160.5
-offset_bottom = 7.0
+offset_left = 2.18473
+offset_top = -20.5596
+offset_right = 193.185
+offset_bottom = 7.44043
 rotation = -0.00444009
 scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 18
 text = "Movement Options"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 16.0
-offset_right = 177.0
-offset_bottom = 292.0
+offset_left = 86.0
+offset_top = 14.0
+offset_right = 192.0
+offset_bottom = 290.0
 scale = Vector2(0.5, 0.5)
 
 [node name="LineEditUp" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
@@ -166,8 +225,72 @@ layout_mode = 2
 [node name="LineEditUpLeft" type="LineEdit" parent="UI/LogicPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="CodeDisplay" type="TextEdit" parent="UI/LogicPanel/VBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="UI/LogicPanel"]
+layout_mode = 0
+offset_left = 23.9162
+offset_top = 14.9564
+offset_right = 79.9162
+offset_bottom = 138.956
+scale = Vector2(1.1, 1.1)
+
+[node name="code2" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "	\"up\" : "
+
+[node name="code3" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "	\"down\" : "
+
+[node name="code4" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "	\"left\" : "
+
+[node name="code5" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "	\"right\" : "
+
+[node name="code6" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "	\"up-left\" : "
+
+[node name="code7" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "	\"up-right\" : "
+
+[node name="code8" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "	\"down-left\" : "
+
+[node name="code9" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "	\"down-right\" : "
+
+[node name="code1" type="Label" parent="UI/LogicPanel"]
+layout_mode = 2
+offset_left = 3.33232
+offset_top = -0.561633
+offset_right = 78.3323
+offset_bottom = 13.4384
+theme_override_fonts/font = SubResource("FontVariation_n5uh2")
+theme_override_font_sizes/font_size = 10
+text = "allowed_dirs = {"
+
+[node name="code10" type="Label" parent="UI/LogicPanel"]
+layout_mode = 2
+offset_left = 5.83113
+offset_top = 151.101
+offset_right = 61.8311
+offset_bottom = 163.101
+theme_override_font_sizes/font_size = 10
+text = "}"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI"]
 offset_left = 901.0
@@ -184,64 +307,14 @@ text = "Restart"
 layout_mode = 2
 text = "Home"
 
-[node name="UI_LogicPanel_VBoxContainer2#Code1" type="Label" parent="."]
-theme_override_fonts/font = SubResource("FontVariation_n5uh2")
-theme_override_font_sizes/font_size = 8
-text = "allowed_dirs = {"
+[node name="CamTopCenterBoard" type="Camera2D" parent="."]
+position = Vector2(64, 64)
+zoom = Vector2(4.5, 4.5)
 
-[node name="UI_LogicPanel_VBoxContainer2#Code2" type="Label" parent="."]
-theme_override_font_sizes/font_size = 8
-text = "	\"up\" : "
-
-[node name="UI_LogicPanel_VBoxContainer2#Code3" type="Label" parent="."]
-theme_override_font_sizes/font_size = 8
-text = "	\"down\" : "
-
-[node name="UI_LogicPanel_VBoxContainer2#Code4" type="Label" parent="."]
-theme_override_font_sizes/font_size = 8
-text = "	\"left\" : "
-
-[node name="UI_LogicPanel_VBoxContainer2#Code5" type="Label" parent="."]
-theme_override_font_sizes/font_size = 8
-text = "	\"right\" : "
-
-[node name="UI_LogicPanel_VBoxContainer2#Code6" type="Label" parent="."]
-theme_override_font_sizes/font_size = 8
-text = "	\"up-left\" : "
-
-[node name="UI_LogicPanel_VBoxContainer2#Code7" type="Label" parent="."]
-theme_override_font_sizes/font_size = 8
-text = "	\"up-right\" : "
-
-[node name="UI_LogicPanel_VBoxContainer2#Code8" type="Label" parent="."]
-theme_override_font_sizes/font_size = 8
-text = "	\"down-left\" : "
-
-[node name="UI_LogicPanel_VBoxContainer2#Code9" type="Label" parent="."]
-theme_override_font_sizes/font_size = 8
-text = "	\"down-right\" : "
-
-[node name="UI_LogicPanel_VBoxContainer2_Code9#Code9" type="Label" parent="."]
-offset_left = 113.364
-offset_top = -0.428764
-offset_right = 169.364
-offset_bottom = 11.5712
-theme_override_font_sizes/font_size = 8
-text = "}"
-
-[node name="LevelTimer" type="Timer" parent="."]
-wait_time = 60.0
-autostart = true
-
-[node name="HUD" type="CanvasLayer" parent="."]
-
-[node name="TimerDisplayLabel" type="Label" parent="HUD"]
-visibility_layer = 513
-offset_left = 9.0
-offset_top = 41.0
-offset_right = 109.0
-offset_bottom = 99.0
-
+[connection signal="pressed" from="UI/WinPanel/HBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
+[connection signal="pressed" from="UI/WinPanel/HBoxContainer/Level Selector" to="." method="_on_level_selector_pressed"]
+[connection signal="pressed" from="UI/WinPanel/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="pressed" from="UI/WinPanel/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="UI/LogicPanel/ApplyButton" to="UI/LogicPanel" method="_on_button_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/Restart" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/Home" to="." method="_on_home_pressed"]

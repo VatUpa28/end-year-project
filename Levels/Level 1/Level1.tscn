@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://4s2uh67x8h3a"]
+[gd_scene load_steps=10 format=3 uid="uid://4s2uh67x8h3a"]
 
 [ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://Levels/Level 1/level_1.gd" id="1_xsdw8"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_xsdw8"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_4m2h1"]
 [ext_resource type="Script" uid="uid://wsnjxtk4ih02" path="res://Levels/win_lose_panel.gd" id="4_4m2h1"]
 [ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 1/logic_panel.gd" id="4_xsdw8"]
+[ext_resource type="AudioStream" uid="uid://bgel8gn0ucl60" path="res://Audio/tap.wav" id="6_41qmv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_41qmv"]
 texture = ExtResource("2_xsdw8")
@@ -229,6 +230,14 @@ text = "Restart"
 [node name="Home" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
 text = "Home"
+
+[node name="Tap" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -1.52588e-05)
+stream = ExtResource("6_41qmv")
+volume_db = 24.0
+
+[node name="Party" type="AudioStreamPlayer2D" parent="."]
+volume_db = 24.0
 
 [connection signal="pressed" from="UI/WinPanel/HBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="UI/WinPanel/HBoxContainer/Level Selector" to="." method="_on_level_selector_pressed"]
