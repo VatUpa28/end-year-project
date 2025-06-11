@@ -52,8 +52,7 @@ func generate_random_board():
 		current_piece_counts[name] = 0
 
 	var attempts = 0
-	var corrupted_pieces: Array = []
-	var all_pieces: Array = []
+	var any_corrupted = false
 
 	while used_positions.size() < NUM_PIECES and attempts < 100:
 		attempts += 1
@@ -77,27 +76,21 @@ func generate_random_board():
 			add_child(piece)
 			piece.global_position = world_pos
 
-			piece.allowed_dirs = get_default_dirs(piece_name)
-			piece.set_original_dirs()
-
 			if randf() < CORRUPTION_CHANCE:
 				corrupt_piece(piece)
 				if piece.get_meta("corrupted", false):
-					corrupted_pieces.append(piece)
+					any_corrupted = true
 			else:
+				piece.allowed_dirs = get_default_dirs(piece_name)
+				piece.set_original_dirs()
 				piece.mark_corrupted(false)
 
 			piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))
-			all_pieces.append(piece)
 
-	# Force at least 2 corrupted pieces
-	while corrupted_pieces.size() < 2 and all_pieces.size() > 0:
-		var candidate = all_pieces[randi() % all_pieces.size()]
-		if not candidate.get_meta("corrupted", false):
-			corrupt_piece(candidate)
-			if candidate.get_meta("corrupted", false):
-				corrupted_pieces.append(candidate)
-
+	# If no pieces got corrupted, forcibly corrupt one random piece
+	if not any_corrupted and get_child_count() > 0:
+		var piece_to_corrupt = get_child(randi() % get_child_count())
+		corrupt_piece(piece_to_corrupt)
 
 func corrupt_piece(piece):
 	piece.allowed_dirs = get_default_dirs(piece.name)
@@ -189,7 +182,6 @@ func check_win_condition() -> bool:
 		win_panel.visible = true
 		reset_button.disabled = true
 		home_button.disabled = true
-		$Party.play()
 
 	return corrupted_count == 0
 
@@ -197,31 +189,19 @@ func on_piece_fixed():
 	check_win_condition()
 
 func _on_restart_pressed() -> void:
-	$Tap.play()
-	await get_tree().create_timer(0.075).timeout
 	get_tree().reload_current_scene()
 
 func _on_home_pressed() -> void:
-	$Tap.play()
-	await get_tree().create_timer(0.075).timeout
 	get_tree().change_scene_to_file("res://Main/MainMenu/MainMenu.tscn")
 
 func _on_home_button_pressed() -> void:
-	$Tap.play()
-	await get_tree().create_timer(0.075).timeout
 	get_tree().change_scene_to_file("res://Main/MainMenu/MainMenu.tscn")
 
 func _on_level_selector_pressed() -> void:
-	$Tap.play()
-	await get_tree().create_timer(0.075).timeout
 	get_tree().change_scene_to_file("res://Main/LevelSelector/LevelSelector.tscn")
 
 func _on_next_button_pressed() -> void:
-	$Tap.play()
-	await get_tree().create_timer(0.075).timeout
 	get_tree().change_scene_to_file("res://Levels/Level 2/Level2.tscn")
 
 func _on_retry_button_pressed() -> void:
-	$Tap.play()
-	await get_tree().create_timer(0.075).timeout
 	get_tree().reload_current_scene()

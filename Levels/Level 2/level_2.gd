@@ -1,7 +1,5 @@
 extends Node2D
 
-@export var level_num := 1
-
 @onready var piece_scenes = [
 	preload("res://Pieces/white-pawn.tscn"),
 	preload("res://Pieces/white-rook.tscn"),
@@ -20,21 +18,19 @@ extends Node2D
 @onready var board = $Board
 @onready var logic_panel := $UI/LogicPanel
 @onready var win_panel := $UI/WinPanel
+@onready var lose_panel := $UI/LosePanel
 @onready var reset_button := $UI/HBoxContainer/Restart
 @onready var home_button := $UI/HBoxContainer/Home
 
 const GRID_SIZE = 8
 const NUM_PIECES = 12
-const CORRUPTION_CHANCE_LEVEL1 = 0.35
-const CORRUPTION_CHANCE_LEVEL2 = 0.4
+const CORRUPTION_CHANCE = 0.4
 
 var selected_piece = null
 var win_shown = false
 
 func _ready():
 	randomize()
-	if logic_panel.has_method("set_level_node"):
-		logic_panel.set_level_node(self)
 	generate_random_board()
 
 func generate_random_board():
@@ -43,64 +39,80 @@ func generate_random_board():
 			child.queue_free()
 
 	var used_positions: Array = []
-	var corrupted_pieces: Array = []
-	var all_pieces: Array = []
-
-	var max_piece_counts = {
-		"white-pawn": 8, "white-rook": 2, "white-knight": 2, "white-bishop": 2,
-		"white-queen": 1, "white-king": 1,
-		"black-pawn": 8, "black-rook": 2, "black-knight": 2, "black-bishop": 2,
-		"black-queen": 1, "black-king": 1
+	
+	const MAX_PIECES = {
+		"white" : {
+			"king" : 1,
+			"queen" : 1,
+			"rook" : 2,
+			"bishop" : 2,
+			"knight" : 2,
+			"pawn" : 8
+		},
+		"black" : {
+			"king" : 1,
+			"queen" : 1,
+			"rook" : 2,
+			"bishop" : 2,
+			"knight" : 2,
+			"pawn" : 8
+		}
 	}
-
-	var current_piece_counts = max_piece_counts.duplicate(true)
-	for key in current_piece_counts:
-		current_piece_counts[key] = 0
-
+	
+	var current_piece_counts = {
+		"white" : {
+			"king" : 0,
+			"queen" : 0,
+			"rook" : 0,
+			"bishop" : 0,
+			"knight" : 0,
+			"pawn" : 8
+		},
+		"black" : {
+			"king" : 0,
+			"queen" : 0,
+			"rook" : 0,
+			"bishop" : 0,
+			"knight" : 0,
+			"pawn" : 0
+		}
+	}
+	
 	var attempts = 0
-
+	var any_corrupted = false
+	
 	while used_positions.size() < NUM_PIECES and attempts < 1000:
 		attempts += 1
 
-		var piece_scene = piece_scenes[randi() % piece_scenes.size()]
-		var piece_name = piece_scene.resource_path.get_file().get_basename()
-
-		if current_piece_counts[piece_name] < max_piece_counts[piece_name]:
-			current_piece_counts[piece_name] += 1
+		var piece_scene = piece_scenes[randi() % piece_scenes.size()]		
+		var scene_path = piece_scene.resource_path
+		var piece_name = scene_path.get_file().get_basename()  # e.g. "white-rook"
+		
+		var parts = piece_name.split("-")
+		if parts.size() < 2:
+			continue
+		
+		var color = parts[0]
+		var piece_type = parts[1] 
+		
+		if current_piece_counts[color][piece_type] < MAX_PIECES[color][piece_type]:
+			current_piece_counts[color][piece_type] += 1
 
 			var piece = piece_scene.instantiate()
-			piece.name = piece_name + str(used_positions.size())
 
 			var cell = get_random_grid_position(used_positions)
 			used_positions.append(cell)
 
 			var tile_pos = board.map_to_local(cell)
 			var world_pos = board.to_global(tile_pos)
-			piece.global_position = world_pos
+
 			add_child(piece)
+			piece.global_position = world_pos
 
-			piece.allowed_dirs = get_default_dirs(piece_name)
-			piece.set_original_dirs()
-
-			if level_num == 1:
-				if randf() < CORRUPTION_CHANCE_LEVEL1:
-					corrupt_piece(piece)
-					if piece.get_meta("corrupted", false):
-						corrupted_pieces.append(piece)
-				else:
-					piece.mark_corrupted(false)
-				all_pieces.append(piece)
+			# For level 2, do NOT corrupt or highlight in red.
+			# So, skip corrupt_piece(piece) here
 
 			piece.connect("piece_clicked", Callable(self, "on_piece_clicked"))
-
-	# Force at least 2 corrupted pieces in Level 1
-	if level_num == 1:
-		while corrupted_pieces.size() < 2 and all_pieces.size() > 0:
-			var candidate = all_pieces[randi() % all_pieces.size()]
-			if not candidate.get_meta("corrupted", false):
-				corrupt_piece(candidate)
-				if candidate.get_meta("corrupted", false):
-					corrupted_pieces.append(candidate)
 
 func corrupt_piece(piece):
 	piece.allowed_dirs = get_default_dirs(piece.name)
@@ -112,8 +124,12 @@ func corrupt_piece(piece):
 	for i in range(corrupt_count):
 		piece.allowed_dirs[dirs[i]] = false
 
-	piece.mark_corrupted(not piece.is_directions_correct())
-
+	# Now check if corrupted
+	if not piece.is_directions_correct():
+		piece.mark_corrupted(true)
+	else:
+		piece.mark_corrupted(false)
+		
 func get_default_dirs(piece_name: String) -> Dictionary:
 	var dirs := {
 		"up": false, "down": false, "left": false, "right": false,
@@ -134,9 +150,16 @@ func get_default_dirs(piece_name: String) -> Dictionary:
 		dirs["up_right"] = true
 		dirs["down_left"] = true
 		dirs["down_right"] = true
-	elif piece_name.contains("queen") or piece_name.contains("king"):
+	elif piece_name.contains("queen"):
 		for dir in dirs.keys():
 			dirs[dir] = true
+	elif piece_name.contains("king"):
+		for dir in dirs.keys():
+			dirs[dir] = true
+	elif piece_name.contains("knight"):
+		# Knights move in L-shapes; not handled by this system
+		pass
+
 	return dirs
 
 func on_piece_clicked(piece):
@@ -155,28 +178,34 @@ func on_piece_clicked(piece):
 		logic_panel.update_with_piece(piece)
 
 func get_random_grid_position(used: Array) -> Vector2i:
-	var attempts = 0
-	while attempts < 1000:
+	while true:
 		var x = randi() % GRID_SIZE
 		var y = randi() % GRID_SIZE
 		var cell = Vector2i(x, y)
 		if not used.has(cell):
 			return cell
-		attempts += 1
-	return Vector2i(0, 0) 
+	return Vector2i(0, 0)
+
+# No corrupt_piece function call since pieces aren't corrupted in this level
 
 func check_win_condition() -> bool:
 	var corrupted_count = 0
 	for child in get_children():
 		if child is Area2D and child.has_method("mark_corrupted"):
-			if child.get_meta("corrupted", false):
+			var is_corrupted = child.get_meta("corrupted", false)
+			print("🔍", child.name, "corrupted:", is_corrupted)
+			if is_corrupted:
 				corrupted_count += 1
 
+	print("⏳", corrupted_count, "corrupted pieces remain.")
+
 	if corrupted_count == 0 and not win_shown:
+		print("✅ WIN CONDITION MET!") #why do we need this
 		win_shown = true
 		win_panel.visible = true
 		reset_button.disabled = true
 		home_button.disabled = true
+
 	return corrupted_count == 0
 
 func on_piece_fixed():

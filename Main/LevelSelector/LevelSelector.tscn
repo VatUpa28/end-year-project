@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhx0kpy5qy6xm"]
 
 [ext_resource type="Script" uid="uid://csdev6jcyd55b" path="res://Main/LevelSelector/level_selector.gd" id="1_m4s1d"]
-[ext_resource type="AudioStream" uid="uid://bgel8gn0ucl60" path="res://Audio/tap.wav" id="2_rf4sk"]
+[ext_resource type="Texture2D" uid="uid://crnm1nxkeid4r" path="res://2f2c904e-4e95-480d-81a0-cad6d91b2b33.png" id="1_rf4sk"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -11,14 +11,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576.5, 323)
+scale = Vector2(1.14746, 0.658203)
+texture = ExtResource("1_rf4sk")
+
 [node name="LevelSelector" type="Node" parent="."]
 script = ExtResource("1_m4s1d")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LevelSelector"]
 offset_left = 175.0
-offset_top = 225.0
+offset_top = 302.0
 offset_right = 369.0
-offset_bottom = 265.0
+offset_bottom = 342.0
 scale = Vector2(4, 4)
 
 [node name="Level1Selector" type="Button" parent="LevelSelector/HBoxContainer"]
@@ -34,21 +39,12 @@ layout_mode = 2
 text = "Level 3"
 
 [node name="Home" type="Button" parent="LevelSelector"]
-offset_left = 450.0
-offset_top = 60.0
-offset_right = 505.0
-offset_bottom = 91.0
+offset_left = 452.0
+offset_top = 156.0
+offset_right = 507.0
+offset_bottom = 187.0
 scale = Vector2(4, 4)
 text = "Home"
-
-[node name="Tap" type="AudioStreamPlayer2D" parent="LevelSelector"]
-position = Vector2(-83.3333, -66.6667)
-scale = Vector2(0.333333, 0.333333)
-stream = ExtResource("2_rf4sk")
-volume_db = 24.0
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(576, 324)
 
 [connection signal="pressed" from="LevelSelector/HBoxContainer/Level1Selector" to="LevelSelector" method="_on_level_1_selector_pressed"]
 [connection signal="pressed" from="LevelSelector/HBoxContainer/Level2Selector" to="LevelSelector" method="_on_level_2_selector_pressed"]

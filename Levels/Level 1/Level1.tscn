@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://4s2uh67x8h3a"]
 
 [ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://Levels/Level 1/level_1.gd" id="1_xsdw8"]
+[ext_resource type="Texture2D" uid="uid://du6hsuoi2vdy4" path="res://07f45545-f223-4b0a-b62c-4f34060c0d89.png" id="2_41qmv"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_xsdw8"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_4m2h1"]
 [ext_resource type="Script" uid="uid://wsnjxtk4ih02" path="res://Levels/win_lose_panel.gd" id="4_4m2h1"]
 [ext_resource type="Script" uid="uid://cjthwlam42cgo" path="res://Levels/Level 1/logic_panel.gd" id="4_xsdw8"]
-[ext_resource type="AudioStream" uid="uid://bgel8gn0ucl60" path="res://Audio/tap.wav" id="6_41qmv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_41qmv"]
 texture = ExtResource("2_xsdw8")
@@ -70,6 +70,11 @@ sources/1 = SubResource("TileSetAtlasSource_n2mur")
 [node name="Level1" type="Node2D"]
 script = ExtResource("1_xsdw8")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(66.5, 65.5)
+scale = Vector2(0.169922, 0.145508)
+texture = ExtResource("2_41qmv")
+
 [node name="Board" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_atwlb")
 rendering_quadrant_size = 8
@@ -130,7 +135,6 @@ layout_mode = 2
 text = "Retry"
 
 [node name="LogicPanel" type="Panel" parent="UI"]
-visible = false
 self_modulate = Color(0, 0, 0, 1)
 light_mask = 1023
 visibility_layer = 1023
@@ -139,10 +143,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -559.0
-offset_top = -269.0
-offset_right = -459.0
-offset_bottom = -169.0
+offset_left = -534.0
+offset_top = -270.0
+offset_right = -453.0
+offset_bottom = -170.0
 grow_horizontal = 2
 grow_vertical = 2
 rotation = 0.00182382
@@ -157,22 +161,24 @@ scale = Vector2(0.4, 0.4)
 text = "Apply"
 
 [node name="ColorRect" type="ColorRect" parent="UI/LogicPanel"]
+visible = false
 layout_mode = 0
-offset_left = -5.75
-offset_top = -20.008
-offset_right = 106.25
-offset_bottom = -0.00797844
+offset_left = -17.2364
+offset_top = -19.9686
+offset_right = 112.764
+offset_bottom = 2.0314
 rotation = -0.00714684
 color = Color(0, 0, 0, 0.784314)
 
 [node name="Label" type="Label" parent="UI/LogicPanel"]
 layout_mode = 0
-offset_left = -5.75
-offset_top = -19.991
-offset_right = 143.25
-offset_bottom = 3.009
+offset_left = -16.0372
+offset_top = -20.3708
+offset_right = 155.963
+offset_bottom = 7.62922
 rotation = -0.00444009
 scale = Vector2(0.75, 0.75)
+theme_override_font_sizes/font_size = 18
 text = "Movement Options"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/LogicPanel"]
@@ -230,14 +236,6 @@ text = "Restart"
 [node name="Home" type="Button" parent="UI/HBoxContainer"]
 layout_mode = 2
 text = "Home"
-
-[node name="Tap" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(0, -1.52588e-05)
-stream = ExtResource("6_41qmv")
-volume_db = 24.0
-
-[node name="Party" type="AudioStreamPlayer2D" parent="."]
-volume_db = 24.0
 
 [connection signal="pressed" from="UI/WinPanel/HBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="UI/WinPanel/HBoxContainer/Level Selector" to="." method="_on_level_selector_pressed"]

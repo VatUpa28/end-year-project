@@ -3,6 +3,7 @@ extends Panel
 var player_won=false #have to update this somewhere else in my code...probably level 1 code.
 @onready var retry_button = $RetryButton
 @onready var next_button = $NextButton
+@onready var home_button = $HomeButton
 func _ready():
 	if retry_button and next_button: 
 		retry_button.connect("piece_clicked", Callable(self, "on_retry_clicked"))
@@ -20,6 +21,7 @@ func _on_next_pressed() -> void:
 
 func _on_retry_pressed() -> void:
 	get_tree().reload_current_scene()
+	
 func _on_home_pressed() -> void:
 	get_tree().change_scene_to_file("res://Main/MainMenu/MainMenu.tscn")
 
