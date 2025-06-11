@@ -1,7 +1,9 @@
 extends Control
 
 var current_piece = null
-var allowed_dirs = { # not needed
+var level_node = null  # Reference to the level node (set from level script)
+
+var allowed_dirs = {
 	"up": false,
 	"down": false,
 	"left": false,
@@ -55,6 +57,7 @@ func update_with_piece(piece):
 	le_downleft.text = str(piece.allowed_dirs.get("down_left", false))
 	le_downright.text = str(piece.allowed_dirs.get("down_right", false))
 
+	_update_code_display()
 
 func _on_ApplyButton_pressed():
 	if current_piece:
@@ -88,4 +91,4 @@ func _update_code_display():
 	code += "\t\"down_right\": " + str(parse_bool(le_downright.text)) + "\n"
 	code += "}"
 
-	code_display.text = code
+	#code_display.text = code

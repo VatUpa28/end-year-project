@@ -2,16 +2,12 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d13ei05fiyu2r"
-path="res://.godot/imported/istockphoto-1083302826-612x612.jpg-f7ae71a159470d0c0d9f5d4e18abdaad.ctex"
-metadata={
-"vram_texture": false
-}
+uid="uid://yt1my0mnhrjn"
+valid=false
 
 [deps]
 
-source_file="res://istockphoto-1083302826-612x612.jpg"
-dest_files=["res://.godot/imported/istockphoto-1083302826-612x612.jpg-f7ae71a159470d0c0d9f5d4e18abdaad.ctex"]
+source_file="res://Images/pngtree-texture-of-a-flat-top-view-on-a-dark-wooden-table-picture-image_13601551.jpg"
 
 [params]
 

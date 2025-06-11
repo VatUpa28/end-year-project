@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://eljivmt6losk"
-path="res://.godot/imported/Grass_Background_Texture-680.jpg-8a302ea7afe26b1ae25b6535abca0944.ctex"
+uid="uid://dvfewgym6x88u"
+path="res://.godot/imported/grunge-rich-wood-grain-texture-background-with-knots_84485-775.jpg-3f108cd847579e8b44af6f39b3943175.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Grass_Background_Texture-680.jpg"
-dest_files=["res://.godot/imported/Grass_Background_Texture-680.jpg-8a302ea7afe26b1ae25b6535abca0944.ctex"]
+source_file="res://Images/grunge-rich-wood-grain-texture-background-with-knots_84485-775.jpg"
+dest_files=["res://.godot/imported/grunge-rich-wood-grain-texture-background-with-knots_84485-775.jpg-3f108cd847579e8b44af6f39b3943175.ctex"]
 
 [params]
 

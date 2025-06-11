@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://4s2uh67x8h3a"]
 
 [ext_resource type="Script" uid="uid://cokylr8bfnu6u" path="res://Levels/Level 1/level_1.gd" id="1_xsdw8"]
-[ext_resource type="Texture2D" uid="uid://du6hsuoi2vdy4" path="res://Images/07f45545-f223-4b0a-b62c-4f34060c0d89.png" id="2_41qmv"]
+[ext_resource type="Texture2D" uid="uid://du6hsuoi2vdy4" path="res://07f45545-f223-4b0a-b62c-4f34060c0d89.png" id="2_41qmv"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_xsdw8"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_4m2h1"]
 [ext_resource type="Script" uid="uid://wsnjxtk4ih02" path="res://Levels/win_lose_panel.gd" id="4_4m2h1"]
@@ -112,9 +112,9 @@ text = "You Win!
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/WinPanel"]
 layout_mode = 0
-offset_left = 130.0
+offset_left = 75.0
 offset_top = 193.0
-offset_right = 348.0
+offset_right = 293.0
 offset_bottom = 251.0
 scale = Vector2(2.5, 2.5)
 
@@ -125,6 +125,10 @@ text = "Home"
 [node name="Level Selector" type="Button" parent="UI/WinPanel/HBoxContainer"]
 layout_mode = 2
 text = "Levels"
+
+[node name="NextButton" type="Button" parent="UI/WinPanel/HBoxContainer"]
+layout_mode = 2
+text = "Next"
 
 [node name="RetryButton" type="Button" parent="UI/WinPanel/HBoxContainer"]
 layout_mode = 2
@@ -157,6 +161,7 @@ scale = Vector2(0.4, 0.4)
 text = "Apply"
 
 [node name="ColorRect" type="ColorRect" parent="UI/LogicPanel"]
+visible = false
 layout_mode = 0
 offset_left = -17.2364
 offset_top = -19.9686
@@ -234,6 +239,7 @@ text = "Home"
 
 [connection signal="pressed" from="UI/WinPanel/HBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="UI/WinPanel/HBoxContainer/Level Selector" to="." method="_on_level_selector_pressed"]
+[connection signal="pressed" from="UI/WinPanel/HBoxContainer/NextButton" to="." method="_on_next_button_pressed"]
 [connection signal="pressed" from="UI/WinPanel/HBoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="UI/LogicPanel/ApplyButton" to="UI/LogicPanel" method="_on_ApplyButton_pressed"]
 [connection signal="pressed" from="UI/HBoxContainer/Restart" to="." method="_on_restart_pressed"]

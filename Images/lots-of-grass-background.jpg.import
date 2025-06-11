@@ -2,12 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://yt1my0mnhrjn"
-valid=false
+uid="uid://c7xnsfy0od5ye"
+path="res://.godot/imported/lots-of-grass-background.jpg-9d4589c3f65dbc6af4b601c95cbbb2b5.ctex"
+metadata={
+"vram_texture": false
+}
 
 [deps]
 
-source_file="res://pngtree-texture-of-a-flat-top-view-on-a-dark-wooden-table-picture-image_13601551.jpg"
+source_file="res://Images/lots-of-grass-background.jpg"
+dest_files=["res://.godot/imported/lots-of-grass-background.jpg-9d4589c3f65dbc6af4b601c95cbbb2b5.ctex"]
 
 [params]
 

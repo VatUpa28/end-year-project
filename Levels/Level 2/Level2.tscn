@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://hddk0213e151" path="res://Levels/Level 2/level_2.gd" id="1_aat58"]
 [ext_resource type="Texture2D" uid="uid://yc3cnl0m85ev" path="res://Tiles/LightBrown.jpg" id="2_aat58"]
 [ext_resource type="Script" uid="uid://dne2w2lp2lg0k" path="res://Levels/Level 2/control.gd" id="2_n5uh2"]
-[ext_resource type="Texture2D" uid="uid://du6hsuoi2vdy4" path="res://07f45545-f223-4b0a-b62c-4f34060c0d89.png" id="2_w2prh"]
+[ext_resource type="Texture2D" uid="uid://du6hsuoi2vdy4" path="res://Images/07f45545-f223-4b0a-b62c-4f34060c0d89.png" id="2_w2prh"]
 [ext_resource type="Texture2D" uid="uid://ygbk4kfuuoy4" path="res://Tiles/DarkBrown.jpg" id="3_n5uh2"]
 [ext_resource type="Script" uid="uid://dtlfyxn0gwd0h" path="res://Levels/Level 2/logic_panel.gd" id="4_o4rnw"]
 [ext_resource type="Script" uid="uid://bsl6n2hhsfojf" path="res://Levels/Level 2/ui.gd" id="6_yfybp"]
@@ -302,22 +302,22 @@ text = "	\"right\" : "
 [node name="code6" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "	\"up-left\" : "
+text = "	\"down-right\" : "
 
 [node name="code7" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "	\"up-right\" : "
+text = "	\"down-left\" : "
 
 [node name="code8" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "	\"down-left\" : "
+text = "	\"up-right\" : "
 
 [node name="code9" type="Label" parent="UI/LogicPanel/VBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "	\"down-right\" : "
+text = "	\"up-left\" : "
 
 [node name="code1" type="Label" parent="UI/LogicPanel"]
 layout_mode = 2

@@ -1,13 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://bhx0kpy5qy6xm"]
 
 [ext_resource type="Script" uid="uid://csdev6jcyd55b" path="res://Main/LevelSelector/level_selector.gd" id="1_m4s1d"]
-[ext_resource type="Texture2D" uid="uid://crnm1nxkeid4r" path="res://2f2c904e-4e95-480d-81a0-cad6d91b2b33.png" id="1_rf4sk"]
+[ext_resource type="Texture2D" uid="uid://crnm1nxkeid4r" path="res://Images/2f2c904e-4e95-480d-81a0-cad6d91b2b33.png" id="1_rf4sk"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -32,11 +34,13 @@ text = "Level 1"
 
 [node name="Level2Selector" type="Button" parent="LevelSelector/HBoxContainer"]
 layout_mode = 2
-text = "Level 2"
+text = "Coming
+Soon"
 
 [node name="Level3Selector" type="Button" parent="LevelSelector/HBoxContainer"]
 layout_mode = 2
-text = "Level 3"
+text = "Coming
+Soon"
 
 [node name="Home" type="Button" parent="LevelSelector"]
 offset_left = 452.0
